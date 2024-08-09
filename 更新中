@@ -1,0 +1,3335 @@
+# 函数
+
+### 一、函数的基本语法构成
+
+函数的全部特性
+
+* 有函数头和函数体
+* 接受一个参数
+* 返回一个值
+* 需要一个原型
+
+在C++中，函数是执行特定任务的代码块，这些代码块可以被多次调用，而无需重复编写相同的代码。下面将详细解释C++函数的各个方面，包括其语法构成、如何使用、示例以及应注意的事项。
+
+C++函数的基本语法如下：
+
+```cpp
+return_type function_name(parameter list) {  
+    // 函数体  
+    // ...  
+    return return_value; // 如果函数有返回值，则使用return语句返回  
+}
+```
+
+* `return_type`：函数返回值的类型。如果函数不返回任何值，则使用`void`关键字。
+* `function_name`：函数的名称，用于在程序的其他部分调用该函数。
+* `parameter list`：传递给函数的参数列表，由逗号分隔。每个参数都包括参数类型和参数名称。如果函数没有参数，则参数列表为空。
+* `function body`：包含函数实际执行的代码块。
+
+### 二、如何使用函数
+
+1. **声明函数** ：在调用函数之前，需要先声明函数。函数的声明告诉编译器函数的名称、返回类型以及参数类型。
+
+```cpp
+// 函数声明  
+int add(int a, int b);
+```
+
+2. **定义函数** ：在程序的某个地方（通常在声明之后），你需要定义函数，即提供函数的实际代码。
+
+```cpp
+// 函数定义  
+int add(int a, int b) {  
+    return a + b;  
+}
+```
+
+3. **调用函数** ：在程序的适当位置，你可以通过函数名称和参数列表来调用函数。
+
+```cpp
+int main() {  
+    int sum = add(5, 3); // 调用add函数，并将结果存储在sum变量中  
+    std::cout << "The sum is: " << sum << std::endl;  
+    return 0;  
+}
+```
+
+### 三、示例
+
+```cpp
+#include <iostream>  
+  
+// 函数原型（也称为函数声明）  
+// 这里声明了一个名为add的函数，它接受两个int类型的参数，并返回一个int类型的值  
+// 函数头部分包括返回类型、函数名和参数列表  
+// int add(int a, int b);  
+  
+// 函数原型（注释版）  
+// 函数头: int add(int a, int b);  
+// 函数体（尚未给出，但在下面的函数定义中）  
+// 原型在main函数之前，告诉编译器add函数的存在和它的接口  
+int add(int a, int b);  
+  
+int main() {  
+    // 调用add函数，并将结果存储在sum变量中  
+    // 注意：这里虽然说是“接受一个参数”，但实际上add函数接受两个参数  
+    int sum = add(5, 3); // 调用add函数  
+    std::cout << "The sum is: " << sum << std::endl;  
+    return 0;  
+}  
+  
+// 函数定义  
+// 这里定义了add函数的实际实现  
+// 包括函数头和函数体  
+// 函数头与上面的函数原型相同  
+// 函数体是花括号{}内的部分，包含了实现函数功能的代码  
+// int add(int a, int b) { ... }  
+  
+// 函数定义（注释版）  
+// 函数头: int add(int a, int b) // 接受两个int类型的参数a和b，返回一个int类型的值  
+// 函数体: { return a + b; } // 函数体中的代码实现了两个数的相加并返回结果  
+int add(int a, int b) { // 接受两个参数a和b  
+    return a + b; // 返回一个值，这里是a和b的和  
+}  
+```
+
+### 四、应注意的事项
+
+1. **函数声明与定义** ：函数的声明和定义通常是分开的，但也可以合并在一起。在大型项目中，通常将函数声明放在头文件中，而将函数定义放在源文件中。
+2. **参数传递** ：C++使用值传递（pass by value）或引用传递（pass by reference）来传递参数。值传递会创建参数的副本，而引用传递则使用参数的原始内存地址。在需要修改原始参数值或处理大型数据结构时，引用传递可能更有效。
+3. **函数重载** ：C++允许使用相同的函数名称但不同的参数列表来定义多个函数，这称为函数重载（function overloading）。这允许程序员为不同的参数类型提供不同的实现。
+4. **返回类型** ：函数必须指定返回类型，除非它是`void`类型。如果函数没有返回语句或返回了与指定类型不匹配的值，则会导致编译错误。
+5. **作用域** ：函数在其定义的作用域内可见。在函数外部定义的变量（全局变量）在函数内部也是可见的，但函数内部的变量（局部变量）在函数外部是不可见的。
+6. **递归函数** ：函数可以调用自身，这称为递归（recursion）。递归在处理递归数据结构（如链表、树等）和某些算法（如排序、搜索等）时非常有用。但是，如果递归没有正确的终止条件，可能会导致无限递归和栈溢出错误。
+
+# 数组
+
+要创建数组，可使用声明语句，数组声明应指出以下三点
+
+* 储存在每个元素中的值的类型
+* 数组名
+* 数组中的元素数
+
+就像这样`typeName arrayName[arraySize]`
+
+### 代码示例
+
+```cpp
+// arrayone.cpp -- 小型整数数组  
+#include <iostream>  
+  
+int main()  
+{  
+    // 使用std命名空间，以便可以直接使用cout等标准库中的名称  
+    using namespace std;  
+  
+    // 创建一个包含三个元素的整数数组yams  
+    int yams[3];    // 创建一个有三个元素的数组  
+  
+    // 为数组yams的元素赋值  
+    yams[0] = 7;    // 为第一个元素赋值  
+    yams[1] = 8;    // 为第二个元素赋值  
+    yams[2] = 6;    // 为第三个元素赋值  
+  
+    // 创建一个包含三个元素的整数数组yamcosts，并在声明时初始化  
+    int yamcosts[3] = {20, 30, 5}; // 创建并初始化数组,当然此处也可以填{20,30},没填的部分会自动补为0.
+    // 因此如果有建立内部元素全为0的数组的需求,可以写 int yamcosts[3] = {0}或者什么也没有{}
+    // 注意：如果你的C++编译器或翻译器不能初始化这个数组，  
+    // 可以使用static int yamcosts[3]代替int yamcosts[3]  
+  
+    // 输出yams数组中所有元素的总和  
+    cout << "Total yams = ";  
+    cout << yams[0] + yams[1] + yams[2] << endl;  
+  
+    // 输出第二个元素yams[1]对应的yamcosts[1]的价格  
+    cout << "The package with " << yams[1] << " yams costs ";  
+    cout << yamcosts[1] << " cents per yam.\n";  
+  
+    // 计算并输出总费用  
+    int total = yams[0] * yamcosts[0] + yams[1] * yamcosts[1] + yams[2] * yamcosts[2];  
+    cout << "The total yam expense is " << total << " cents.\n";  
+  
+    // 输出数组yams的大小（以字节为单位）  
+    cout << "\nSize of yams array = " << sizeof(yams); // 注意sizeof是一个操作符，需要括号  
+    cout << " bytes.\n";  
+  
+    // 输出数组yams中一个元素的大小（以字节为单位）  
+    cout << "Size of one element = " << sizeof(yams[0]);  
+    cout << " bytes.\n";  
+  
+    // cin.get(); // 用于在控制台程序结束时暂停窗口，以便查看输出。但在这里是注释掉的  
+    return 0; // 程序正常结束  
+}
+```
+
+# 字符串
+
+### 一、字符常量和字符串常量
+
+注意，字符串常量（使用双引号）不能与字符常量（使用单引号）互换。字符常量（如'S'）是字符串编码的简写表示。在ASCII系统上，'S'只是83的另一种写法，因此，下面的语句将83赋给shirt_size:
+`char shirt_size ='S'; // this is fine`
+
+但"S"不是字符常量，它表示的是两个字符（字符S和\0）组成的字符串。更糟糕的是，"S"实际上表示的是字符串所在的内存地址。因此下面的语句试图将一个内存地址赋给shirt_size:
+`char shirt_size ="s";// illegal type mismatch`
+由于地址在C++中是一种独立的类型，因此C+编译器不允许这种不合理的做法,更多内容在指针处会提到
+
+### 二、字符串的输入
+
+容易产生的问题
+
+#### 1.字符串的输入
+
+```cpp
+// instr1.cpp -- 读取多个字符串  
+#include <iostream>  
+  
+int main()  
+{  
+    using namespace std; // 使用命名空间std，这样可以不必为std中的每个元素都加前缀std::  
+  
+    const int ArSize = 20; // 定义一个常量ArSize，表示数组的大小为20  
+    char name[ArSize]; // 定义一个字符数组name，用于存储用户的名字  
+    char dessert[ArSize]; // 定义一个字符数组dessert，用于存储用户最喜欢的甜点  
+  
+    cout << "Enter your name:\n"; // 输出提示信息，让用户输入他们的名字  
+    cin >> name; // 使用cin从标准输入读取一个字符串到name数组中  
+    // 注意：这里只会读取到第一个空格为止，所以如果名字中包含空格（如"John Doe"），则只会读取"John"  
+  
+    cout << "Enter your favorite dessert:\n"; // 输出提示信息，让用户输入他们最喜欢的甜点  
+    cin >> dessert; // 同样，这里也只会读取到第一个空格为止  
+    // 如果甜点名称中包含空格（如"ice cream"），则只会读取"ice"  
+  
+    cout << "I have some delicious " << dessert; // 输出用户输入的甜点名称  
+    cout << " for you, " << name << ".\n"; // 输出一条包含用户名字的消息  
+  
+    // cin.get(); // 这两行通常用于在控制台程序中暂停程序，以便查看输出  
+    // cin.get(); // 但在某些IDE或环境中，可能不需要这两行，或者它们可能不起作用  
+  
+    return 0; // 程序正常结束  
+}
+```
+
+正如注释所说,该程序的意图很简单:读取来自键盘的用户名和用户喜欢的甜点，然后显示这些信息。下面是该程序的运行情况:
+
+`Enter your name:`
+
+`Alistair Dreeb`
+
+`Enteryour favorite dessert:`
+
+`I have some delicious Dreeb for you, Alistai`
+
+我们甚至还没有对“输入甜点的提示”作出反应，程序便把它显示出来了，然后立即显示最后一行。`cin`是如何确定已完成字符串输入呢?由于不能通过键盘输入空字符,因此 `cin` 需要用别的方法来确定字符串的结尾位置。`cin` 使用空白(空格、制表符和换行符)来确定字符串的结束位置，这意味着 `cin`在获取字符数组输人时只读取一个单词。读取该单词后，`cin`将该字符串放到数组中，并自动在结尾添加空字符这个例子的实际结果是，`cin` 把 Alistair 作为第一个字符串，并将它放到 name 数组中。这把 Dreeb 留在输人队列中。当 `cin` 在输人队列中搜索用户喜欢的甜点时，它发现了 Dreeb，因此 `cin` 读取 Dreeb，并将它放到dessert数组中。
+
+每次读取一个单词通常不是最好的选择。要将整条短语而不是一个单词作为字符串输入,需要采用另一种字符串读取方法。具体地说,需要采用***面向行而不是面向单词的方法***。幸运的是，istream 中的类(如cin)提供了一些面向行的类成员函数:`getline()`和 `get()`。
+
+这两个函数都读取一行输入，直到到达换行符。然而，随后`getline()`将丢弃换行符，而`get()`将换行符保留在输入序列中。下面详细介绍它们，首先介绍`getline()`。
+
+`getline()`函数读取整行，它使用通过回车键输人的换行符来确定输入结尾。要调用这种方法，可以使用`cin.geline()`。***该函数有两个参数。第一个参数是用来存储输入行的数组的名称，第二个参数是要读取的字符数。***如果这个参数为 20，则函数最多读取19个字符，余下的空间用于存储自动在结尾处添加的空字符。`getline()`成员函数在读取指定数目的字符或遇到换行符时停止读取。
+例如，假设要使用 getine()将姓名读入到一个包含 20 个元素的 name 数组中。可以使用这样的函数调用:
+
+`cin.getline(name,20);`
+
+我们来试试另一种方法。istream类有另一个名为 `get()`的成员函数，该函数有几种变体。其中一种变体的工作方式与`getline()`类似，它们接受的参数相同，解释参数的方式也相同，并且都读取到行尾。但 `get()`并不再读取并丢弃换行符，而是将其留在输人队列中。假设我们连续两次调用`get()`:
+
+`cin.get(name,ArSize);`
+
+`cin.get(dessert,ArSize); //a problen`
+
+由于第一次调用后，换行符将留在输入队列中，因此第二次调用时看到的第一个字符便是换行符。因此`get()`认为已到达行尾，而没有发现任何可读取的内容。如果不借助于帮助，`get()`将不能跨过该换行符。幸运的是，`get()`有另一种变体。使用不带任何参数的`cin.get()`调用可读取下一个字符(即使是换行符)。因此可以用它来处理换行符，为读取下一行输入做好准备。也就是说，可以采用下面的调用序列:
+
+`cin.get(name,ArSize); // read first line`
+
+`cin.get(); // read newline`
+
+`cin.get(dessert,Arsize); // read second line`
+
+另一种使用`get()`的方式是将两个类成员函数拼接起来(合并)，如下所示:
+
+`cin.get(name,ArSize).get();`
+
+#### 2. 混合输入字符串和数字
+
+```cpp
+// numstr.cpp -- following number input with line input  
+#include <iostream>  
+  
+int main()  
+{  
+    using namespace std; // 使用std命名空间，以便可以直接使用cout、cin等，无需前缀std::  
+  
+    cout << "What year was your house built?\n"; // 输出提示信息  
+    int year; // 定义一个整数变量year，用于存储年份  
+    cin >> year; // 从标准输入读取一个整数，并存储在变量year中  
+  
+    // 潜在问题1：这里缺少一个cin.ignore()或者cin.get()来消耗掉输入流中的换行符  
+    // 或者可以直接写 (cin >> year).get()
+    // 因为cin >> year;之后，用户输入的换行符仍然留在输入缓冲区中  
+    // 如果不消耗掉这个换行符，cin.getline()将立即读取到它，并认为是一个空行  
+  
+    // cin.get(); // 这行被注释掉了，但如果取消注释，它只会读取一个字符（通常是换行符）  
+    // 但更好的做法是使用cin.ignore()来丢弃输入缓冲区中的剩余字符，直到遇到换行符  
+  
+    cout << "What is its street address?\n"; // 输出提示信息  
+    char address[80]; // 定义一个字符数组address，用于存储街道地址，大小为80个字符  
+    cin.getline(address, 80); // 从标准输入读取一行，最多读取79个字符（最后一个位置留给'\0'），并存储在address中  
+  
+    cout << "Year built: " << year << endl; // 输出年份  
+    cout << "Address: " << address << endl; // 输出街道地址  
+    cout << "Done!\n"; // 输出完成信息  
+  
+    // cin.get(); // 这行被注释掉了，它通常用于在控制台中暂停程序输出，以便查看结果  
+    // 在某些IDE或环境中，可能不需要这行代码，或者它可能不起作用  
+  
+    return 0; // 程序正常结束  
+}
+```
+
+```cpp
+// newstrct.cpp -- using new with a structure
+#include <iostream>
+struct inflatable   // structure definition
+{
+    char name[20];
+    float volume;
+    double price;
+};
+int main()
+{
+    using namespace std;
+    inflatable * ps = new inflatable; // allot memory for structure
+    cout << "Enter name of inflatable item: ";
+    cin.get(ps->name, 20);            // method 1 for member access
+    cout << "Enter volume in cubic feet: ";
+    cin >> (*ps).volume;              // method 2 for member access
+    cout << "Enter price: $";
+    cin >> ps->price;
+    cout << "Name: " << (*ps).name << endl;              // method 2
+    cout << "Volume: " << ps->volume << " cubic feet\n"; // method 1
+    cout << "Price: $" << ps->price << endl;             // method 1
+    delete ps;                        // free memory used by structure
+    // cin.get();
+    // cin.get();
+    return 0; 
+}
+
+```
+
+在 C++ 中，`cin.get()` 和 `cin >>` 的行为在处理输入时略有不同，这涉及到输入流的缓冲区（buffer）以及它们如何处理输入字符。
+
+1. **cin.get()**：
+
+   * `cin.get()` 是一个无格式输入函数，它会从输入流中读取一个字符（包括空格、制表符和换行符）。
+   * 当使用 `cin.get(ps->name, 20);` 时，它会读取最多 19 个字符（为 '\0' 结尾符留下一个位置）或直到遇到换行符（Enter 键产生的）为止，并将换行符留在输入缓冲区中。
+2. **cin >>**：
+
+   * `cin >>` 是一个有格式输入函数，它会跳过输入中的空白字符（空格、制表符和换行符），然后读取下一个非空白字符序列。
+   * 因此，当 `cin.get(ps->name, 20);` 之后紧跟 `cin >> (*ps).volume;` 时，`cin >>` 会跳过留在缓冲区中的换行符，并等待用户输入下一个非空白字符序列。
+
+为什么留在缓冲区的换行符没有影响到 `cin >> (*ps).volume;`？
+
+这是因为 `cin >>` 操作符是有格式的输入，它会自动跳过输入流中的空白字符（包括换行符）。所以，留在缓冲区中的换行符不会影响到 `cin >>` 读取 `volume` 的操作。
+
+但是，如果你使用 `cin.get()` 来读取 `volume`（例如，`cin.get(temp_string);` 然后将字符串转换为浮点数），那么留在缓冲区中的换行符就会被读取，并可能导致不期望的行为。
+
+另外，请注意，在你的代码中，你使用了两种方法来访问结构体的成员：
+
+* `ps->name` 和 `ps->volume` 是通过指针访问成员的标准方法。
+* `(*ps).name` 和 `(*ps).volume` 是先解引用指针，然后通过点操作符访问成员的方法。这两种方法是等效的，但通常我们会选择使用第一种方法，因为它更简洁且易于阅读。
+
+# string类
+
+```cpp
+// strtype1.cpp -- using the C++ string class  
+#include <iostream>  
+#include <string>               // 引入string头文件，使得string类可用  
+  
+int main()  
+{  
+    using namespace std;        // 使用std命名空间，避免在代码中重复写std::  
+  
+    char charr1[20];            // 创建一个大小为20的空字符数组  
+    char charr2[20] = "jaguar"; // 创建一个初始化为"jaguar"的字符数组  
+    string str1;                // 创建一个空的string对象  
+    string str2 = "panther";    // 创建一个初始化为"panther"的string对象  
+  
+    cout << "Enter a kind of feline: ";  
+    cin >> charr1;             // 从标准输入读取字符串到charr1，注意这里只读取到空格为止  
+    cout << "Enter another kind of feline: ";  
+    cin >> str1;               // 从标准输入读取字符串到str1，同样只读取到空格为止  
+    cout << "Here are some felines:\n";  
+    cout << charr1 << " " << charr2 << " "  
+         << str1 << " " << str2 // 使用cout输出字符串  
+         << endl;  
+  
+    // 使用数组索引访问charr2的第三个字符（索引从0开始）  
+    cout << "The third letter in " << charr2 << " is "  
+         << charr2[2] << endl;  // 注意这里输出的是第三个字符，索引是2  
+  
+    // 尝试使用数组索引访问str2的第三个字符，这是合法的但可能产生未定义行为  
+    // 如果str2长度小于3，str2[2]是未定义的  
+    cout << "The third letter in " << str2 << " is "  
+         << str2[2] << endl;    // 使用数组索引访问string对象，类似于char数组  
+  
+    // cin.get(); // 通常用于在控制台程序中等待用户按键，但在这里被注释掉了  
+    // cin.get(); // 如果第一个cin.get()是为了消耗输入缓冲区中的换行符，那么第二个可能是为了暂停程序  
+  
+    return 0;   
+}
+```
+
+* 要使用string类,必须在程序中包含头文件string
+* 可以使用c风格的字符串来初始化string对象
+* 可以使用cin将键盘输入存储到string对象中
+* 可以使用cout来显示string对象
+* 可以使用数组表示法的访问存储在string对象中的字符
+
+string类可以进行赋值拼接和附加,但是数组不能赋值给另一个数组
+
+```cpp
+string str1;
+string str2 = "parther";
+str1 = str2;
+string str3;
+str3 = str1 + str2;
+str1 += str2;
+str1 + "ni,hao"
+```
+
+```cpp
+// strtype2.cpp �- assigning, adding, and appending
+#include <iostream>
+#include <string>               // make string class available
+int main()
+{
+    using namespace std;
+    string s1 = "penguin";
+    string s2, s3;
+
+    cout << "You can assign one string object to another: s2 = s1\n";
+    s2 = s1;
+    cout << "s1: " << s1 << ", s2: " << s2 << endl;
+    cout << "You can assign a C-style string to a string object.\n";
+    cout << "s2 = \"buzzard\"\n";
+    s2 = "buzzard";
+    cout << "s2: " << s2 << endl;
+    cout << "You can concatenate strings: s3 = s1 + s2\n";
+    s3 = s1 + s2;
+    cout << "s3: " << s3 << endl;
+    cout << "You can append strings.\n";
+    s1 += s2;
+    cout <<"s1 += s2 yields s1 = " << s1 << endl;
+    s2 += " for a day";
+    cout <<"s2 += \" for a day\" yields s2 = " << s2 << endl;
+
+    //cin.get();
+    return 0; 
+}
+
+```
+
+得到输出
+
+```cpp
+You can assign one string object to another: s2 = s1
+s1: penguin, s2: penguin
+You can assign a C-style string to a string object.
+s2 = "buzzard"
+s2: buzzard
+You can concatenate strings: s3 = s1 + s2
+s3: penguinbuzzard
+You can append strings.
+s1 += s2 yields s1 = penguinbuzzard
+s2 += " for a day" yields s2 = buzzard for a day
+```
+
+# 结构
+
+### 代码示例
+
+```cpp
+// structur.cpp -- a simple structure  
+// 这是一个简单的C++文件，名为structur.cpp，它演示了结构体的使用。  
+  
+#include <iostream>  
+// 包含iostream头文件，以使用输入输出流对象，如cout。  
+  
+struct inflatable   // structure declaration  
+{  
+    char name[20];   // 定义一个字符数组来存储名字，最大长度为19个字符（加上一个终止符'\0'）。  
+    float volume;    // 定义一个浮点数来存储体积。  
+    double price;    // 定义一个双精度浮点数来存储价格。  
+};  
+  
+// 定义了一个名为inflatable的结构体，该结构体包含三个成员：name（名字）、volume（体积）和price（价格）。  
+  
+int main()  
+{  
+    using namespace std;  
+    // 使用std命名空间，以便可以直接使用cout等标准库对象，而无需std::前缀。  
+  
+    inflatable guest =  
+    {  
+        "Glorious Gloria",  // name value  
+        1.88,               // volume value  
+        29.99               // price value  
+    };  
+    // 声明并初始化一个inflatable类型的变量guest，并使用初始化列表来设置其值。  
+  
+    inflatable pal =  
+    {  
+        "Audacious Arthur",  
+        3.12,  
+        32.99  
+    };  
+    // 声明并初始化另一个inflatable类型的变量pal，同样使用初始化列表来设置其值。  
+  
+    // 接下来的代码用于输出guest和pal的信息。  
+  
+    cout << "Expand your guest list with " << guest.name;  
+    // 输出字符串"Expand your guest list with "，然后输出guest的名字。  
+  
+    cout << " and " << pal.name << "!\n";  
+    // 输出" and "，然后输出pal的名字，最后输出一个换行符。  
+  
+    cout << "You can have both for $";  
+    // 输出字符串"You can have both for $"。  
+  
+    cout << guest.price + pal.price << "!\n";  
+    // 计算guest和pal的价格之和，并输出它。  
+  
+    // cin.get();  // 这行代码被注释掉了，它通常用于暂停程序，等待用户输入。  
+  
+    return 0;   
+    // main函数返回0，表示程序成功执行。  
+}
+```
+
+在给出的C++代码中，有几个关键的概念需要澄清：
+
+1. **结构体（Structure）** ：
+   * `inflatable` 是一个结构体。它定义了一个数据模板，该模板包含三个成员：`name`（字符数组）、`volume`（浮点数）和 `price`（双精度浮点数）。
+2. **成员（Members）** ：
+   * `name`、`volume` 和 `price` 是 `inflatable` 结构体的成员。它们定义了结构体中存储的数据类型。
+3. **变量（Variables）** ：
+   * `guest` 和 `pal` 是 `inflatable` 类型的变量。这些变量是 `inflatable` 结构体的实例，它们各自包含三个成员（即 `name`、`volume` 和 `price`）的副本，并可以存储具体的数据值。
+
+所以，在这个上下文中：
+
+* `name`、`volume` 和 `price` 是 `inflatable` 结构体的成员。
+* `guest` 和 `pal` 是 `inflatable` 类型的变量（或称为实例）。
+
+换句话说，`guest` 和 `pal` 是基于 `inflatable` 结构体模板创建的变量，它们各自有自己的 `name`、`volume` 和 `price` 成员，可以存储不同的值
+
+* 在c语言中,应把`inflatable pal`写为`struck inflatable pal`
+* pal的类型为`inflatable`,因此可以使用成员运算符`.`来访问各个成员
+* 同时,和数组一样,使用由逗号分隔值列表,并将这些值用花括号扩起,这些值可以在同一行,也可以在不同行
+
+### 结构数组
+
+```cpp
+// arrstruc.cpp -- 一个结构体的数组  
+#include <iostream> 
+  
+// 定义一个名为inflatable的结构体  
+struct inflatable  
+{  
+    char name[20]; // 结构体成员，一个字符数组，用于存储名字，最大长度为19（加一个终止符'\0'）  
+    float volume;  // 结构体成员，一个浮点数，用于存储体积  
+    double price; // 结构体成员，一个双精度浮点数，用于存储价格  
+};  
+  
+int main()  
+{  
+    using namespace std;  
+  
+    // 初始化一个inflatable类型的数组guests，包含两个元素  
+    inflatable guests[2] =  
+    {  
+        {"Bambi", 0.5, 21.99},      // 数组的第一个元素，即第一个inflatable结构体，初始化为名字为"Bambi"，体积为0.5，价格为21.99  
+        {"Godzilla", 2000, 565.99}  // 数组的第二个元素，即第二个inflatable结构体，初始化为名字为"Godzilla"，体积为2000，价格为565.99  
+    };  
+  
+    // 输出两个结构体（或称为“客人”）的名字和它们的总体积  
+    cout << "The guests " << guests[0].name << " and " << guests[1].name  
+         << "\nhave a combined volume of "  
+         << guests[0].volume + guests[1].volume << " cubic feet.\n";  
+  
+    // cin.get(); // 这行代码被注释掉了，通常用于在控制台中暂停程序，等待用户输入一个字符后继续。但在某些IDE或在线编译器中可能不需要。  
+    return 0; // 主函数返回0，表示程序正常结束  
+}
+```
+
+### 共用体
+
+共用体（union）在内存中的大小是由其最大长度的成员决定的。共用体“节省空间”这一说法是相对于结构体（struct）而言的，当你有多个变量，但同一时间只需要使用其中一个时，使用共用体可以避免为每个变量都分配独立的空间。
+
+具体来说，如果你有一个结构体，其中包含多个不同类型的成员变量，那么无论这些变量是否同时被使用，它们都会各自占用自己的内存空间。然而，如果你知道同一时间只需要使用这些变量中的一个，那么可以使用共用体来替换这些变量，这样只会有一个变量的空间被分配，从而节省了内存。
+
+举个例子，假设你有一个程序需要处理两种不同类型的标识符：一种是数字ID（`long` 类型），另一种是字符ID（`char[20]` 类型）。你不需要同时处理这两种ID，而是根据某种条件（比如用户输入）来决定使用哪种ID。如果你使用结构体，你可能会这样定义：
+
+```cpp
+struct Identifier {  
+    int type; // 用于标识是哪种ID  
+    long id_num; // 数字ID  
+    char id_char[20]; // 字符ID  
+};
+```
+
+但是，在这个结构体中，`id_num` 和 `id_char` 都会各自占用自己的内存空间，即使同一时间只有一个被使用。
+
+相反，如果你使用共用体，你可以这样定义：
+
+```cpp
+struct Identifier {  
+    int type; // 用于标识是哪种ID  
+    union {  
+        long id_num;  
+        char id_char[20];  
+    } id_val;  
+};
+```
+
+在这个例子中，`id_val` 只会占用 `long` 和 `char[20]` 中较大的那个类型的内存空间，而不是两者之和。因此，相对于使用结构体，使用共用体确实可以节省内存空间。当然，这种节省是以牺牲同时访问多个成员的能力为代价的，因为共用体的所有成员都共享同一块内存空间。
+
+```cpp
+#include <iostream>  
+#include <cstring> // 引入cstring库来使用strlen等字符串函数（虽然在这个例子中并没有直接用到）  
+  
+using namespace std;  
+  
+// 定义widget结构体，包含一个品牌字符串、一个类型int和一个共用体id  
+struct widget  
+{  
+    char brand[20];  
+    int type;  
+    union id // 共用体id，它只能同时存储id_num或id_char中的一个  
+    {  
+        long id_num;  
+        char id_char[20];  
+    } id_val;  
+};   
+//当然,此处可以写union  
+//  {  
+//      long id_num;  
+//      char id_char[20];  
+//  }; 这样的匿名共用体,这样long id_num和char id_char就被直接视为price的成员
+  
+int main()  
+{  
+    widget price;  
+  
+    // 输入物品的品牌  
+    cout << "请输入物品的品牌：" << endl;  
+    cin.getline(price.brand, 20); // 使用cin.getline来读取一行字符串，包括空格  
+  
+    // 输入物品的类型（1或2）  
+    cout << "请输入物品的类型（1或2）：" << endl;  
+    cin >> price.type;  
+    cin.ignore(); // 忽略输入缓冲区中剩余的字符，包括换行符，以确保下一个输入不会被干扰  
+  
+    // 根据物品类型输入相应的ID  
+    if (price.type == 1)  
+    {  
+        cout << "请输入数字ID：" << endl;  
+        cin >> price.id_val.id_num;  
+    }  
+    else if (price.type == 2) // 使用else if来确保只处理两种类型之一  
+    {  
+        cout << "请输入字符ID（最多19个字符，因为需要留一个位置给字符串结尾符）：" << endl;  
+        cin.getline(price.id_val.id_char, 20); // 读取一行字符串到id_char中  
+    }  
+    else  
+    {  
+        cout << "无效的类型输入！" << endl;  
+        return 1; // 如果有无效输入，可以返回一个非零的退出码  
+    }  
+  
+    // 输出物品的信息  
+    cout << "品牌：" << price.brand << endl;  
+    cout << "类型：" << price.type << endl;  
+  
+    // 根据物品类型输出相应的ID  
+    if (price.type == 1)  
+    {  
+        cout << "数字ID：" << price.id_val.id_num << endl;  
+    }  
+    else if (price.type == 2)  
+    {  
+        cout << "字符ID：" << price.id_val.id_char << endl;  
+    }  
+  
+    return 0;  
+}
+```
+
+### typedef的使用
+
+在 C 语言中，当你定义了一个结构体（`struct`）类型后，如果你想要使用这个类型的变量，你通常不需要每次都重新写 `struct` 关键字（除非你没有为该结构体类型定义别名）。然而，如果你没有在定义结构体时同时使用 `typedef` 来创建一个类型别名，那么每次声明该结构体类型的变量时，你都需要使用 `struct` 关键字加上结构体的标签（即你定义结构体时给的名字）。
+
+这里有两个例子来说明这一点：
+
+#### 没有使用 typedef 的情况
+
+```c
+// 定义了一个结构体，但没有使用 typedef 创建别名
+struct Point {
+    int x;
+    int y;
+};
+
+// 声明 Point 类型的变量时，需要使用 struct 关键字
+struct Point p1, p2;
+p1.x = 10;
+p1.y = 20;
+
+// 如果在多个地方都需要使用 Point 类型，每次都要写 struct Point
+```
+
+#### 使用了 typedef 的情况
+
+```c
+// 定义了结构体，并使用 typedef 创建了别名
+typedef struct {
+    int x;
+    int y;
+} Point; // 注意这里直接使用了 Point 作为别名，没有显式给出结构体标签
+
+// 或者，如果你想要一个结构体标签，也可以这样做：
+// typedef struct Point_tag {
+//     int x;
+//     int y;
+// } Point;
+
+// 现在，你可以直接使用 Point 来声明变量，不需要 struct 关键字
+Point p1, p2;
+p1.x = 10;
+p1.y = 20;
+
+// 这种方式更加简洁，特别是在大型项目中，可以减少代码冗余和提高可读性
+```
+
+在第二个例子中，通过使用 `typedef`，我们为结构体类型创建了一个别名 `Point`。这意味着在后续的代码中，我们可以直接使用 `Point` 来声明该类型的变量，而不需要每次都写 `struct` 关键字。这种方式在 C 和 C++ 中都非常常见，因为它使得代码更加简洁和易于理解。
+
+总结：如果你想要在 C 语言中避免每次都写 `struct` 关键字来声明结构体类型的变量，你应该在定义结构体时同时使用 `typedef` 来创建一个类型别名。
+
+### `typedef` 在C++中的作用
+
+在C++中，`typedef` 的作用与在C语言中非常相似。它用于为现有的数据类型定义一个新的名称（别名），无论是基本数据类型、结构体、联合体、类还是指针等复杂类型。尽管C++引入了更高级的类型别名机制（如 `using` 关键字），但 `typedef` 仍然被广泛使用，并且对于向后兼容和与C语言代码的互操作性来说是非常重要的。
+
+1. **简化类型声明**：当你需要频繁使用某个复杂类型时（比如结构体、类模板的实例化、指针到指针等），使用 `typedef` 可以为这些类型定义一个简短的别名，从而使代码更加简洁易读。
+2. **提高代码的可移植性**：在某些平台上，基本数据类型的大小可能不同（例如，`int` 在不同的编译器和平台上可能有不同的位数）。通过使用 `typedef` 和预处理器指令（如 `#define` 或 `#ifdef`），可以为这些基本数据类型定义平台无关的类型别名，从而提高代码的可移植性。
+3. **与C语言代码兼容**：由于C++是C的超集，许多C++项目可能需要与C语言代码交互。在这些情况下，使用 `typedef` 可以帮助保持与C语言代码的一致性，并简化C++代码与C代码之间的接口。
+4. **为模板参数提供类型别名**：虽然 `using` 关键字在C++11及更高版本中成为定义类型别名的首选方式（特别是在模板编程中），但 `typedef` 仍然可以用于模板参数的类型别名。然而，在模板上下文中，`using` 通常更加灵活和直观。
+
+### `using` 与 `typedef` 的比较
+
+在C++中，`using` 关键字提供了一种更灵活、更直观的方式来定义类型别名。特别是当涉及到模板和嵌套类型时，`using` 通常比 `typedef` 更受欢迎。然而，`typedef` 仍然有其用武之地，特别是在与C语言代码兼容或维护旧代码库时。
+
+### 示例
+
+```cpp
+// 使用 typedef 定义类型别名
+typedef int* IntPtr;
+typedef std::vector<int> IntVector;
+
+// 使用 using 定义类型别名（C++11及更高版本）
+using IntPtr = int*;
+using IntVector = std::vector<int>;
+
+// 在模板中
+template<typename T>
+class MyClass {
+    // 使用 typedef
+    typedef T* TPtr;
+  
+    // 使用 using（C++11及更高版本）
+    using TPtr = T*;
+  
+    // ...
+};
+```
+
+总之，`typedef` 在C++中仍然扮演着重要的角色，尽管 `using` 提供了更现代、更灵活的类型别名定义方式。然而，在需要向后兼容或与C语言代码交互的情况下，`typedef` 仍然是不可或缺的。
+
+# 指针和自由存储空间
+
+### 1. 指针的定义
+
+指针是一个变量，它的值是一个内存地址。这个地址指向某个类型的变量。指针的类型决定了它指向的变量类型以及可以进行的操作。
+
+例如，int *ptr; 声明了一个名为 ptr 的指针变量，它可以指向一个整数类型的变量。
+
+### 2. 指针的初始化
+
+指针在声明后必须被初始化，否则它可能包含一个无效的内存地址，尝试访问这个地址可能会导致程序崩溃。初始化指针时，通常使用 & 运算符来获取某个变量的地址，然后将这个地址赋值给指针。
+
+例如，int x = 10; int *ptr = &x; 这行代码首先声明了一个整数 x 并初始化为 10，然后声明了一个指向整数的指针 ptr，并将 x 的地址赋值给 ptr。
+
+### 3. 指针的解引用
+
+解引用指针是通过 * 运算符来完成的，它可以获取指针指向的变量的值。同样，也可以通过解引用指针来修改指针指向的变量的值。
+
+例如，*ptr = 20; 这行代码将 ptr 指向的变量的值修改为 20。在这个例子中，如果 ptr 指向的是 x，那么这行代码将 x 的值修改为 20。
+
+### 4. 指针的运算
+
+指针可以进行一些基本的算术运算，如加法、减法等。但是，这些运算的结果仍然是地址，而不是指向的值。指针运算的结果通常用于在数组或内存块中遍历元素。
+
+例如，如果 ptr 指向一个数组的第一个元素，那么 ptr+1 将指向数组的第二个元素（假设数组的元素类型为整数）。
+
+### 5. 指针和数组
+
+在C和C++中，数组名在大多数情况下都被当作指向数组第一个元素的指针。因此，可以使用指针来访问和修改数组的元素。
+
+例如，如果 int arr[5] = {1, 2, 3, 4, 5};，那么 arr[2] 和 *(arr+2) 是等效的，它们都表示数组的第三个元素（值为 3）。
+
+### 6. 指针的安全使用
+
+使用指针时需要格外小心，因为错误的指针操作可能会导致程序崩溃、数据损坏或安全漏洞。以下是一些使用指针时需要注意的事项：
+
+在使用指针之前，确保它已经被正确初始化。
+
+不要解引用空指针（即值为 NULL 的指针）。
+
+不要越界访问指针指向的内存区域。
+
+在使用完指针后，尽量将其设置为 NULL，以避免悬挂指针（dangling pointer）的问题。
+
+避免在函数之间传递裸指针（raw pointer），尽量使用智能指针（如 std::unique_ptr 和 std::shared_ptr）等更安全的方式来管理内存。
+
+### 7.`new` 操作符
+
+`new` 操作符用于动态地分配内存，并返回指向新分配内存的指针。它通常用于以下两种场景：
+
+1. **单个对象的分配**
+
+   ```cpp
+   int* pInt = new int; // 分配一个int大小的内存，并返回指向它的指针  
+   *pInt = 42; // 使用指针来设置该内存的值
+   ```
+
+2. **数组的分配**
+
+   ```cpp
+   int* arr = new int[10]; // 分配一个包含10个int的数组，并返回指向它的指针  
+   for (int i = 0; i < 10; ++i) {  
+       arr[i] = i; // 使用指针来设置数组中的值  
+   }
+   ```
+
+### 8.`delete` 操作符
+
+`delete` 操作符用于释放之前由 `new` 操作符分配的内存。如果不释放内存，就会导致内存泄漏。`delete` 同样有两种用法：
+
+1. **释放单个对象**
+
+   ```cpp
+   int* pInt = new int;  
+   // ... 使用pInt指向的内存 ...  
+   delete pInt; // 释放内存，并将pInt设置为nullptr（可选，但推荐）  
+   pInt = nullptr; // 防止悬挂指针
+   ```
+
+2. **释放数组**
+
+   ```cpp
+   int* arr = new int[10];  
+   // ... 使用arr指向的数组 ...  
+   delete[] arr; // 注意方括号，用于释放数组内存  
+   arr = nullptr; // 防止悬挂指针
+   ```
+
+**重要提示** ：
+
+* 当使用 `new[]` 分配数组时，必须使用 `delete[]` 来释放内存，而不是 `delete`。
+* 释放内存后，最好将指针设置为 `nullptr`，以防止悬挂指针（即指向已被释放内存的指针）。
+* 使用 `new` 和 `delete` 时需要谨慎处理异常安全，因为如果在分配内存后抛出异常，可能会导致资源泄漏。考虑使用智能指针（如 `std::unique_ptr` 和 `std::shared_ptr`）来自动管理内存。
+* 不要用`delete`来释放不是`new`分配的内存。
+* 不要使用`delete`释放同一个内存两次。
+* 对空指针应用`delete`是安全的。
+
+```cpp
+// arraynew.cpp -- 使用new操作符为数组分配内存  
+#include <iostream>  
+  
+int main()  
+{  
+    using namespace std;  
+  
+    // 声明一个指向double类型的指针p3，并使用new操作符为它分配能够存放3个double类型数据的内存空间  
+    double * p3 = new double [3]; // space for 3 doubles  
+  
+    // 使用指针p3像操作数组一样给分配的内存赋值  
+    p3[0] = 0.2;                  // treat p3 like an array name  
+    p3[1] = 0.5;  
+    p3[2] = 0.8;  
+  
+    // 输出p3[1]的值  
+    cout << "p3[1] is " << p3[1] << ".\n";  
+  
+    // 将指针p3向后移动一个double类型的大小（即指向下一个double）  
+    p3 = p3 + 1;                  // increment the pointer  
+  
+    // 输出当前p3所指向的“数组”（实际上还是同一块内存，但是通过p3+1后偏移了）的第一个和第二个元素  
+    // 注意：这里p3已经不再是原始数组的起始地址，但访问p3[0]和p3[1]仍然是安全的（只要没有越界）  
+    cout << "Now p3[0] is " << p3[0] << " and ";  
+    cout << "p3[1] is " << p3[1] << ".\n";  
+  
+    // 将指针p3重新指向原始数组的起始地址  
+    p3 = p3 - 1;                  // point back to beginning  
+  
+    // 使用delete[]操作符释放之前使用new[]操作符分配的内存  
+    // 释放内存后，指针p3本身的值（即内存地址）不会自动变为0或nullptr  
+    // 但该内存地址指向的内存区域现在已经被系统回收，不应再被使用  
+    delete [] p3;                 // free the memory  
+  
+    // 释放内存后，p3指针仍然指向原来的内存地址（即它的值并没有改变）  
+    // 但是此时访问*p3或p3[n]是未定义行为（UB, Undefined Behavior），因为它不再指向有效内存  
+  
+    // 注意：为了避免悬挂指针（dangling pointer），通常我们会将释放后的指针设置为nullptr  
+    // p3 = nullptr; // 这行可以在delete[]后添加，但不是必需的，但推荐  
+  
+    // cin.get(); // 这行代码通常用于防止程序在控制台窗口立即关闭，在IDE或某些环境中可能不需要  
+  
+    // 在这里，由于我们已经释放了p3指向的内存，p3中的值（即内存地址）虽然还存在，但已经无效  
+    // 我们不能通过p3来访问或修改原来分配的内存区域  
+  
+    // 关于0.2：在delete[] p3之后，0.2这个值本身并没有被改变或删除  
+    // 它仍然存在于被释放的内存区域中，但是这块内存现在已经被系统回收，随时可能被分配给其他变量或对象  
+    // 再次访问这个内存区域（即使用原来的p3指针）是危险的，因为它可能导致程序崩溃或其他未定义的行为  
+  
+    return 0;   
+}
+```
+
+如果不将指针 `p3` 重新指向原始数组的起始地址，而是直接调用 `delete[] p3;`，程序的行为仍然是正确的，并且内存会被正确地释放。这是因为 `delete[]` 操作符关心的是通过 `new[]` 分配的内存块的起始地址，而不是之后指针 `p3` 可能被修改成的任何其他值。
+
+在这个例子中，即使你执行了 `p3 = p3 + 1;`，`p3` 仍然保存着原始数组内存块的某个地址（具体来说是原始数组第二个元素的地址）。当你调用 `delete[] p3;` 时，C++ 运行时系统会找到这个地址对应的内存块（它是通过先前的 `new[]` 操作分配的），并释放整个内存块，不管 `p3` 是否已经被移动。
+
+当执行 `p3 = p3 + 1;` 后，`p3` 指针将向前移动一个 `double` 类型的大小，从而指向原始数组中索引为1的元素（即原来 `p3[1]` 的位置）。此时，如果尝试访问 `p3[2]`，实际上是在访问原始数组中索引为2的元素之后的位置。
+
+这会导致几个问题：
+
+1. **越界访问** ：由于 `p3` 现在指向原始数组的第二个元素，`p3[2]` 实际上是访问了数组界限之外的内存。这是未定义行为（Undefined Behavior, UB），可能导致程序崩溃、数据损坏或其他不可预测的结果。
+2. **内存安全** ：访问数组界限之外的内存是危险的，因为它可能覆盖其他变量的内存空间，或者访问到程序没有权限访问的内存区域。
+3. **逻辑错误** ：即使程序没有崩溃，访问 `p3[2]` 也可能返回错误的值，因为那块内存可能包含随机数据或者已经被其他部分的程序使用。
+
+为了避免这种问题，你应该确保指针在访问数组元素时始终指向有效的数组范围内。如果你需要遍历数组，可以使用循环或指针运算，但要确保指针不会超出数组的界限。
+
+在你的例子中，如果你想要再次访问原始数组中的 `0.2`（即 `p3[0]`），你应该将指针 `p3` 重新设置回原始数组的起始地址，或者使用另一个指针（如 `original_p3`）来保存原始地址。然后，你可以通过 `original_p3[0]` 来安全地访问 `0.2`。
+
+### 数组的地址(字符串也是如此)
+
+在 C++ 中，当尝试使用 `std::cout` 来输出一个数组时（如 `cout << tell << endl;`），实际上是在尝试输出数组的名字 `tell`。在 C++ 中，数组的名字在大多数情况下会被解释为指向数组第一个元素的指针（即 `&tell[0]`）。因此，`cout << tell << endl;` 会输出数组 `tell` 的第一个元素的地址，而不是数组的内容。
+
+```cpp
+0x62fe00
+1
+0x62fe00#include <iostream>
+using namespace std;
+
+int main()
+{
+    short tell[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    cout << tell << endl; // 输出数组 tell 的首地址（即 &tell[0] 的地址）
+    cout << tell[0] << endl;
+    cout << &tell << endl; // 输出整个数组的地址（实际上是指向数组第一个元素的指针的地址，但通常与 tell 相同）
+}
+
+
+// 最终的输出为
+//0x62fe00
+//1
+//0x62fe00
+```
+
+在 `cout << tell << endl;` 这行中，`tell` 被解释为指向 `tell[0]`（即值为 1 的 `short` 类型变量）的指针，并输出这个指针的地址。在大多数平台上，数组的名字和指向其第一个元素的指针在数值上是相同的，所以您会看到它们输出了相同的地址。
+
+但是，请注意 `cout << &tell << endl;` 这行代码。这里 `&tell` 实际上取得是数组本身的地址，而不是数组第一个元素的地址。在 C++ 中，数组是一个复合类型，它不能直接被赋值或复制，但是可以获取它的地址。然而，由于数组在内存中是连续存放的，并且数组的名字在大多数上下文中被解释为指向其第一个元素的指针，所以 `&tell` 和 `tell`（即 `&tell[0]`）在数值上通常是相同的。但是，它们的类型是不同的：`&tell` 的类型是 `short (*)[10]`（一个指向包含 10 个 `short` 类型元素的数组的指针），而 `tell`（或 `&tell[0]`）的类型是 `short*`（一个指向 `short` 类型元素的指针）。
+
+要输出数组的内容，您需要遍历数组并使用循环来逐个打印元素，或者使用一些标准库函数（如 `std::copy` 和 `std::ostream_iterator`）来帮助您完成这个任务。
+
+### 智能指针
+
+C++11引入了智能指针的概念，如 `std::unique_ptr` 和 `std::shared_ptr`，它们提供了更安全、更方便的内存管理方式。智能指针会在适当的时候自动释放内存，从而减少了内存泄漏和悬挂指针的风险。例如：
+
+```cpp
+#include <memory>  
+  
+std::unique_ptr<int> pInt(new int(42)); // 使用unique_ptr管理int的内存  
+// ... 使用*pInt ...  
+// 不需要显式调用delete，unique_ptr会在离开作用域时自动释放内存  
+  
+std::shared_ptr<int[]> arr(new int[10]); // 使用shared_ptr管理int数组的内存  
+// ... 使用arr指向的数组 ...  
+// 同样，不需要显式调用delete[]，shared_ptr会在最后一个shared_ptr离开作用域时自动释放内存
+```
+
+# `for`循环
+
+在C++中，`for`循环是一种非常常用的循环控制结构，它允许你重复执行一段代码块固定次数或直到某个条件不再满足。`for`循环的一般语法如下：
+
+```cpp
+for (初始化表达式; 条件表达式; 更新表达式) {
+    // 循环体
+}
+```
+
+* **初始化表达式**：在循环开始前执行，通常用于初始化循环控制变量。
+* **条件表达式**：在每次循环开始前求值。如果条件为`true`（非零），则执行循环体；如果为`false`（零），则退出循环。
+* **更新表达式**：在每次循环体执行完毕后执行，通常用于更新或递增/递减循环控制变量。
+
+### 示例
+
+#### 1. 打印数字1到5
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    for (int i = 1; i <= 5; i++) {
+        cout << i << " ";
+    }
+    cout << endl;
+    return 0;
+}
+```
+
+在这个例子中，`i`是循环控制变量，初始化为1。循环条件是`i <= 5`，意味着只要`i`的值小于或等于5，循环就会继续。每次循环结束时，`i`的值通过`i++`递增。
+
+#### 2. 使用`for`循环计算阶乘
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n, factorial = 1;
+    cout << "Enter a number: ";
+    cin >> n;
+
+    for (int i = 1; i <= n; i++) {
+        factorial *= i;
+    }
+
+    cout << "Factorial of " << n << " is " << factorial << endl;
+    return 0;
+}
+```
+
+这个例子中，我们计算用户输入的数字`n`的阶乘。循环从1开始，直到`i`等于`n`，每次循环将`factorial`乘以`i`。
+
+#### 3. 嵌套`for`循环
+
+`for`循环可以嵌套使用，即一个`for`循环内部包含另一个`for`循环。这常用于处理二维数据结构，如二维数组。
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int rows = 3, cols = 4;
+    int matrix[rows][cols];
+
+    // 初始化矩阵
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            matrix[i][j] = i + j; // 仅为示例
+            cout << matrix[i][j] << " ";
+        }
+        cout << endl; // 换行
+    }
+
+    return 0;
+}
+```
+
+在这个例子中，我们创建了一个3行4列的矩阵，并使用嵌套`for`循环来初始化并打印它。外层循环控制行，内层循环控制列。
+
+### 注意事项
+
+* 确保循环条件最终会变为`false`，以避免无限循环。
+* 在循环体内部修改循环控制变量时要小心，以避免意外的行为。
+* 嵌套`for`循环时，要注意循环变量的作用域和命名，避免混淆。
+
+# `while` 循环
+
+`while` 循环是编程中另一种常用的循环控制结构，与 `for` 循环不同，`while` 循环在每次循环开始前评估一个条件，如果条件为真（即非零），则执行循环体内的代码块；如果条件为假（即零），则退出循环。`while` 循环特别适用于那些你事先不知道需要循环多少次的情况。
+
+### 基本语法
+
+在 C++（以及许多其他编程语言）中，`while` 循环的基本语法如下：
+
+```cpp
+while (条件表达式) {
+    // 循环体
+    // 这里是每次条件为真时都要执行的代码
+}
+```
+
+* **条件表达式**：在每次循环开始前评估。如果条件为真（非零），则执行循环体内的代码；如果为假（零），则退出循环。
+
+### 示例
+
+#### 1. 打印数字1到5
+
+虽然使用 `for` 循环来打印数字1到5更为常见，但也可以使用 `while` 循环来实现：
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int i = 1;
+    while (i <= 5) {
+        cout << i << " ";
+        i++; // 更新条件表达式中的变量
+    }
+    cout << endl;
+    return 0;
+}
+```
+
+在这个例子中，我们初始化了一个变量 `i` 并将其设置为1。`while` 循环的条件是 `i <= 5`。在循环体内，我们打印了 `i` 的值，并通过 `i++` 更新了 `i` 的值。由于我们在循环体内部更新了 `i` 的值，所以循环最终会停止，因为 `i` 的值最终会大于5，导致条件表达式为假。
+
+#### 2. 使用 `while` 循环读取用户输入直到特定条件
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string input;
+    cout << "Enter strings (enter 'quit' to stop):" << endl;
+    while (true) {
+        getline(cin, input); // 读取一行输入
+        if (input == "quit") {
+            break; // 如果输入是'quit'，则退出循环
+        }
+        cout << "You entered: " << input << endl;
+    }
+    return 0;
+}
+```
+
+在这个例子中，我们使用了一个无限循环（`while (true)`），它会一直运行，直到遇到 `break` 语句。我们通过 `getline` 函数读取用户的输入，并将其存储在 `input` 变量中。然后，我们检查 `input` 是否等于 `"quit"`。如果是，则执行 `break` 语句来退出循环；否则，我们打印出用户输入的字符串。
+
+### 注意事项
+
+* 确保在循环体内更新条件表达式中涉及的变量，以避免无限循环。
+* 如果循环条件永远不会变为假，那么你将得到一个无限循环。这通常是一个编程错误，但在某些情况下（如等待用户输入）可能是有意的。
+* 在使用 `while` 循环时，要特别注意循环的退出条件，以确保程序能够按预期工作。
+
+# `do-while` 循环
+
+`do-while` 循环是编程中另一种循环控制结构，它与 `while` 循环类似，但有一个关键的区别：`do-while` 循环至少会执行一次循环体内的代码块，因为循环体的执行是在检查循环条件之前进行的。这意味着，无论循环条件在第一次评估时是否为真，循环体都会执行一次。之后，如果循环条件为真，则循环会继续执行；如果为假，则循环终止。
+
+### 基本语法
+
+在 C++（以及许多其他编程语言）中，`do-while` 循环的基本语法如下：
+
+```cpp
+do {
+    // 循环体
+    // 这里是每次循环都要执行的代码
+} while (条件表达式);
+```
+
+* **循环体**：这是每次循环都要执行的代码块。
+* **条件表达式**：在每次循环体执行完毕后评估。如果条件为真（非零），则循环继续；如果为假（零），则循环终止。
+
+注意，`while` 关键字后面有一个分号 (`;`)，这是 `do-while` 循环语法的一部分，表示循环条件的结束。
+
+### 示例
+
+#### 1. 打印数字1到5（尽管这个例子更适合用 `for` 或 `while` 循环）
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int i = 1;
+    do {
+        cout << i << " ";
+        i++; // 更新循环条件中涉及的变量
+    } while (i <= 5);
+    cout << endl;
+    return 0;
+}
+```
+
+在这个例子中，`do-while` 循环首先打印了 `i` 的值（此时为1），然后检查 `i <= 5` 是否为真。由于这是第一次迭代，条件为真，因此循环继续。在每次迭代结束时，`i` 的值都会增加，直到 `i` 大于5，循环条件变为假，循环终止。
+
+#### 2. 至少执行一次的用户输入循环
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string input;
+    do {
+        cout << "Enter a string (or enter 'quit' to stop): ";
+        getline(cin, input); // 读取一行输入
+        if (input != "quit") {
+            cout << "You entered: " << input << endl;
+        }
+    } while (input != "quit");
+    return 0;
+}
+```
+
+在这个例子中，`do-while` 循环确保用户至少输入一次字符串，即使他们第一次就输入了 `"quit"`。循环体会先执行一次，然后检查 `input` 是否等于 `"quit"`。如果不等于，则打印用户输入的字符串，并继续循环；如果等于，则循环终止。然而，由于 `do-while` 循环的特性，即使用户第一次就输入了 `"quit"`，程序也会先打印出提示信息，并尝试读取输入。
+
+### 注意事项
+
+* `do-while` 循环至少会执行一次循环体，因为循环体的执行是在检查循环条件之前进行的。
+* 如果循环条件在第一次评估时就是假的，`while` 循环将不会执行循环体，但 `do-while` 循环会。
+* 在使用 `do-while` 循环时，要特别注意循环的退出条件，以确保程序能够按预期工作。如果循环条件永远不会变为假，那么你将得到一个无限循环，这通常是一个编程错误。
+
+# 逻辑运算符
+
+### 1. 逻辑与（`&&`）
+
+逻辑与运算符用于连接两个条件表达式，只有当两个表达式都为真时，整个表达式才为真。如果任一表达式为假，则整个表达式为假。
+
+示例：
+
+```cpp
+int a = 5;
+int b = 10;
+if (a > 0 && b < 20) {
+    std::cout << "Both conditions are true." << std::endl;
+}
+```
+
+在这个例子中，因为 `a > 0` 和 `b < 20` 都为真，所以整个 `if` 语句的条件为真，并输出消息。
+
+#### 取值范围测试
+
+在编程和数学逻辑中，`17 < age < 25` 和 `17 < age && age < 25` 这两个表达式有不同的含义和用法。
+
+1. `17 < age < 25`：
+   这个表达式在大多数编程语言中并不是有效的语法，因为它试图使用链式比较（chain comparison），但通常链式比较只支持连续的大于（`>`）或小于（`<`）操作，而不是混合使用。例如，在 Python 中，你可以写 `1 < x < 10`，这是有效的，并且等同于 `(1 < x) and (x < 10)`。但在其他语言中，如 C、C++、Java、JavaScript 等，这样的链式比较是不被支持的。
+
+   如果你试图在这些不支持链式比较的语言中使用 `17 < age < 25`，它会被解释为 `(17 < age) < 25`，这是不正确的，因为 `(17 < age)` 的结果是一个布尔值（`true` 或 `false`），而布尔值不能与数字 `25` 进行比较。
+2. `17 < age && age < 25`：
+   这个表达式在支持逻辑与操作符 `&&` 的编程语言中是有效的。它检查 `age` 是否大于 `17` 并且小于 `25`。这是取值范围测试的正确方式，因为它明确地使用了逻辑与操作符来确保两个条件都为真。
+
+总结来说，`17 < age < 25` 在不支持链式比较的语言中是不正确的，而 `17 < age && age < 25` 是正确的取值范围测试方式。如果你在使用不支持链式比较的语言，你应该使用后者来检查 `age` 是否在指定的范围内。
+
+### 2. 逻辑或（`||`）
+
+逻辑或运算符用于连接两个条件表达式，只要其中一个表达式为真，整个表达式就为真。只有当两个表达式都为假时，整个表达式才为假。
+
+示例：
+
+```cpp
+int c = -5;
+int d = 10;
+if (c > 0 || d < 0) {
+    std::cout << "At least one condition is true." << std::endl;
+}
+```
+
+在这个例子中，虽然 `c > 0` 为假，但 `d < 0` 也为假（实际上 `d` 大于 0），但由于 `d < 20`（假设我们使用了这个条件而不是 `d < 0`）会为真，所以整个 `if` 语句的条件为真，并输出消息。
+
+### 3. 逻辑非（`!`）
+
+逻辑非运算符用于对一个布尔表达式取反。如果表达式为真，则逻辑非的结果为假；如果表达式为假，则逻辑非的结果为真。
+
+示例：
+
+```cpp
+bool e = true;
+if (!e) {
+    std::cout << "e is false." << std::endl;
+} else {
+    std::cout << "e is true." << std::endl;
+}
+```
+
+在这个例子中，`e` 是真，但 `!e` 是假，所以输出 `e is true.`。
+
+### 短路行为（Short-Circuiting）
+
+逻辑与和逻辑或运算符还有一个重要的特性，称为短路行为（或短路求值）。对于逻辑与，如果第一个表达式为假，则整个表达式已经确定为假，因此不会评估第二个表达式。对于逻辑或，如果第一个表达式为真，则整个表达式已经确定为真，因此不会评估第二个表达式。这种特性在某些情况下可以用来优化代码或避免不必要的操作。
+
+### 注意事项
+
+* 当使用逻辑运算符时，请确保操作数的类型是可以隐式转换为布尔值的。在C++中，整数类型（如 `int`）可以隐式转换为布尔值，其中0被视为假，非0值被视为真。但是，最好明确使用布尔类型的变量和表达式，以增加代码的可读性和可维护性。
+* 逻辑运算符的优先级低于关系运算符（如 `==`、`<`、`>` 等），但高于赋值运算符（如 `=`）。如果需要改变优先级，请使用括号明确指定。
+
+# cout的进制转换
+
+```cpp
+#include <iostream>  // 引入输入输出流库，用于输入输出操作  
+using namespace std; // 使用标准命名空间，以便直接使用如cout、endl等标识符  
+  
+int main()  
+{  
+    // 这里其实不需要再次声明 using namespace std; 因为已经在全局范围内声明过了  
+    // int main() 函数是程序的入口点  
+  
+    // 定义三个整型变量，分别表示胸围、腰围和裤长  
+    int chest = 42;   // 胸围，值为42（十进制）  
+    int waist = 42;   // 腰围，值也为42（但下面会输出为十六进制）  
+    int inseam = 42;  // 裤长，值同样为42（但下面会输出为八进制）  
+  
+    // 输出一条描述性的语句  
+    cout << "Monsieur cuts a striking figure!" << endl;  
+    // 输出胸围的值，并标注为十进制  
+    cout << "chest = " << chest << " (decimal for 42)" << endl;  
+  
+    // 使用 hex 操纵符将后续输出的整数转换为十六进制  
+    cout << hex;  
+    // 输出腰围的值，并标注为十六进制（注意：这里实际上waist的值还是42，但输出形式为十六进制）  
+    cout << "waist = " << waist << " (hexadecimal for 42)" << endl;  
+  
+    // 使用 oct 操纵符将后续输出的整数转换为八进制  
+    cout << oct;  
+    // 输出裤长的值，并标注为八进制（注意：这里inseam的值还是42，但输出形式为八进制）  
+    cout << "inseam = " << inseam << " (octal for 42)" << endl;  
+  
+    // cin.get(); // 这行代码用于暂停程序，等待用户输入一个字符后继续。但在某些IDE或编译器中可能不需要  
+  
+    return 0; // 主函数返回0，表示程序正常结束  
+}
+```
+
+# 条件（三目）运算符
+
+在C++中，`:?`运算符被称为**条件运算符**（Conditional Operator），也常被称为**三目运算符**（Ternary Operator），因为它通常涉及三个操作数。这个运算符提供了一种简洁的方式来根据条件选择两个值中的一个。其基本语法如下：
+
+```cpp
+条件 ? 表达式1 : 表达式2;
+```
+
+这里，`条件`是一个表达式，其结果会被评估为布尔值（true或false）。如果`条件`为真（true），则整个表达式的结果是`表达式1`的评估结果；如果`条件`为假（false），则整个表达式的结果是`表达式2`的评估结果。
+
+### 分点归纳
+
+1. **基本形式**：
+
+   * `条件 ? 表达式1 : 表达式2;`
+   * 其中，`条件`是布尔表达式，`表达式1`和`表达式2`是任何合法的C++表达式。
+2. **执行流程**：
+
+   * 首先评估`条件`表达式的值。
+   * 如果`条件`为真（非零），则计算并返回`表达式1`的值。
+   * 如果`条件`为假（零），则计算并返回`表达式2`的值。
+3. **用途**：
+
+   * 条件运算符常用于简单的条件判断，可以替代简单的`if-else`语句，使代码更加简洁。
+   * 它特别适用于赋值操作，可以在一条语句中根据条件给变量赋不同的值。
+4. **优先级和结合性**：
+
+   * 条件运算符的优先级高于赋值运算符和大多数其他运算符，但低于算术运算符和关系运算符。
+   * 它具有右结合性，即如果表达式中包含多个条件运算符，它们将从右向左分组。
+5. **示例**：
+
+   ```cpp
+   int a = 10, b = 20;
+   int max = (a > b) ? a : b; // 如果a大于b，则max为a的值；否则为b的值
+   std::cout << "Max: " << max << std::endl; // 输出: Max: 20
+
+   int c = 5;
+   int result = (c > 0) ? c * 2 : c / 2; // 如果c大于0，则result为c的两倍；否则为c的一半
+   std::cout << "Result: " << result << std::endl; // 输出: Result: 10
+   ```
+
+### 注意事项
+
+* 条件运算符的结果类型是其两个表达式结果类型的共同类型，这通常涉及类型转换。
+* 尽管条件运算符可以使代码更简洁，但在处理复杂的条件逻辑时，使用`if-else`语句可能更清晰、更易于维护。
+* 在编写涉及条件运算符的表达式时，要注意运算符的优先级和结合性，以避免意外的结果。
+
+### 嵌套三目运算符
+
+原始代码
+
+```cpp
+const char x [2] [20] = {"Jason ","at your service\n"};
+const char *y = "Quillstone";
+
+for (int i = 0; i < 3; i++)
+{
+    cout << ((i < 2) ? !i ? x[i] : y : x[1]);
+}
+```
+
+#### 分析
+
+1. **数组定义**：
+
+   * `const char x [2] [20] = {"Jason ","at your service\n"};` 定义了一个二维字符数组 `x`，包含两个字符串："Jason " 和 "at your service\n"。
+   * `const char *y = "Quillstone";` 定义了一个指向常量字符的指针 `y`，指向字符串 "Quillstone"。
+2. **循环和条件运算符**：
+
+   * 循环从 `i = 0` 开始，直到 `i < 3`，即循环三次（i 的值为 0, 1, 2）。
+   * 循环体中的表达式 `((i < 2) ? !i ? x[i] : y : x[1])` 使用了嵌套的三元运算符，这实际上可以重写为更清晰的形式来避免混淆。
+
+#### 重写条件运算符表达式
+
+为了更容易理解，我们可以将这个复杂的条件运算符表达式重写为多个 `if-else` 语句：
+
+```cpp
+if (i < 2) {
+    if (!i) { // 如果 i 是 0
+        cout << x[i]; // 输出 x[0]，即 "Jason "
+    } else {
+        cout << y; // 输出 y，即 "Quillstone"
+    }
+} else {
+    cout << x[1]; // 如果 i >= 2（但实际上只会在 i == 2 时发生），输出 x[1]，即 "at your service\n"
+}
+```
+
+#### 潜在问题
+
+* **类型不匹配**：在原始代码中，三元运算符的结果应该是可以直接输出到 `cout` 的类型。然而，`x[i]` 是一个 `const char [20]` 类型（即字符数组），而不是 `const char*`。在大多数情况下，编译器会允许这种类型转换（数组名在表达式中通常被转换为指向其首元素的指针），但最好显式地处理这种转换，以避免潜在的混淆。
+* **逻辑问题**：虽然逻辑上 `if-else` 重写看起来合理，但原始代码中的三元运算符嵌套可能导致阅读和维护困难。
+
+#### 修正后的代码
+
+为了清晰和避免潜在的错误，可以考虑将条件运算符的使用简化为更直接的 `if-else` 结构，或者如果坚持使用条件运算符，确保类型清晰：
+
+```cpp
+for (int i = 0; i < 3; i++)
+{
+    if (i < 2) {
+        cout << (i == 0 ? x[0] : y);
+    } else {
+        cout << x[1];
+    }
+}
+```
+
+或者，如果你确实想使用三元运算符，并且希望避免类型混淆，可以显式地转换为 `const char*`：
+
+```cpp
+for (int i = 0; i < 3; i++)
+{
+    cout << ((i < 2) ? (!i ? static_cast<const char*>(x[i]) : y) : static_cast<const char*>(x[1]));
+}
+```
+
+但请注意，对于 `x[i]` 的类型转换实际上是多余的，因为如上所述，数组名在表达式中通常自动转换为指向其首元素的指针。这里主要是为了说明类型匹配的概念。
+
+# 二维数组
+
+二维数组是一种在内存中连续存储的、具有两个维度的数据结构。它可以被看作是一个数组的数组，即数组的每一个元素都是一个一维数组。二维数组在编程中非常有用，尤其是在处理表格数据、矩阵计算、图像处理等场景时。
+
+### 基本概念
+
+* **行（Row）**：二维数组中的一维数组称为行。
+* **列（Column）**：每一行中的元素个数决定了二维数组的列数。
+* **索引（Index）**：访问二维数组中的元素需要使用两个索引，通常称为行索引和列索引。
+
+### 声明和初始化
+
+在不同的编程语言中，二维数组的声明和初始化方式可能会有所不同，但基本思想是一致的。
+
+#### C/C++ 示例
+
+```c
+// 声明一个3行4列的二维数组
+int arr[3][4];
+
+// 初始化
+int arr[3][4] = {
+    {1, 2, 3, 4},
+    {5, 6, 7, 8},
+    {9, 10, 11, 12}
+};
+```
+
+### 访问元素
+
+要访问二维数组中的元素，你需要指定行索引和列索引。
+
+#### C/C++ 示例
+
+```c
+int secondElement = arr[1][0]; // 访问第二行第一列的元素，即5
+```
+
+### 遍历二维数组
+
+遍历二维数组通常涉及两层循环，外层循环遍历行，内层循环遍历列。
+
+#### C/C++ 示例
+
+```c
+for(int i = 0; i < 3; i++) {
+    for(int j = 0; j < 4; j++) {
+        printf("%d ", arr[i][j]);
+    }
+    printf("\n"); // 每打印完一行后换行
+}
+```
+
+### 注意事项
+
+* 在使用二维数组时，要注意行索引和列索引的范围，避免越界访问。
+* 在某些情况下，如动态分配二维数组时（特别是C/C++），需要注意内存管理，避免内存泄漏。
+* 二维数组可以很方便地用于表示和操作矩阵、图像等二维数据。
+
+# `switch`语句
+
+在C++中，`switch`语句是一种多分支选择结构，它允许一个变量的值被测试，并根据这个值选择执行多个代码块中的一个。`switch`语句通常与枚举类型（`enum`）或整型（`int`、`char`等）一起使用，但理论上它可以与任何可以隐式转换为整型的类型一起使用。不过，从C++17开始，支持了基于范围的`switch`（也称为结构化绑定`switch`），但这主要用于处理`std::pair`、`std::tuple`等复合类型，并不改变`switch`语句的基本用法。
+
+下面是一个C++中`switch`语句的基本用法示例：
+
+```cpp
+#include <iostream>
+
+int main() {
+    int number = 2;
+
+    switch (number) {
+        case 1:
+            std::cout << "Number is 1" << std::endl;
+            break; // 跳出switch
+        case 2:
+            std::cout << "Number is 2" << std::endl;
+            // 如果没有break，将会继续执行下一个case的代码
+            break;
+        case 3:
+            std::cout << "Number is 3" << std::endl;
+            break;
+        default:
+            std::cout << "Number is not 1, 2, or 3" << std::endl;
+            // default是可选的，用于处理所有未明确列出的case
+    }
+
+    return 0;
+}
+```
+
+在这个例子中，`switch`语句根据`number`变量的值选择执行不同的代码块。每个`case`标签后面跟着一个值，如果该值与`switch`表达式的结果匹配，程序就会从该`case`开始执行，直到遇到`break`语句或`switch`语句的末尾。
+
+重要注意事项：
+
+**穿透（Fall-through）**：如果没有`break`语句，程序会继续执行下一个`case`的代码，这被称为穿透。这通常不是预期的行为，除非你有意为之。
+
+在C++中，`switch`语句的"穿透"（fall-through）行为可以被有意利用，以实现某些特定的逻辑，比如同时处理多个`case`标签下的代码，或者基于某些条件共享代码块。当你想让大小写都能成立时，可以利用这一特性来减少重复代码。
+
+以下是一个有意为之的穿透例子，其中我们想要对字符的大写和小写形式执行相同的操作，而不需要为每个大小写都编写完全相同的代码块：
+
+```cpp
+#include <iostream>
+
+int main() {
+    char ch = 'a'; // 可以是'a'或'A'
+
+    switch (ch) {
+        case 'a':
+        case 'A':
+            // 注意这里没有break，所以'a'和'A'都会执行到这里
+            std::cout << "Character is 'a' or 'A'" << std::endl;
+            // 如果后续没有其他case需要处理，或者已经完成了所有需要的操作，
+            // 可以在这里加上break来避免不必要的穿透（尽管在这个例子中可能不需要）
+            break;
+        case 'b':
+        case 'B':
+            // 如果需要，可以为'b'和'B'添加类似的逻辑
+            // ...
+            break;
+        // 可以有更多的case...
+        default:
+            std::cout << "Character is not 'a', 'A', 'b', 'B', ..." << std::endl;
+    }
+
+    return 0;
+}
+```
+
+在这个例子中，当`ch`是`'a'`或`'A'`时，由于`case 'a':`和`case 'A':`之间没有`break`语句，程序会"穿透"到它们共同的代码块并执行。这样，无论是大写还是小写，都会输出相同的信息。
+
+如果你想要为大小写执行稍微不同的操作，但仍然想要避免重复代码，你可以将共通的代码放在一个函数或代码块中，并在不同的`case`标签下调用它，然后为每个`case`添加特定的操作。但是，对于简单的例子，如上所示的直接穿透通常就足够了。
+
+请注意，虽然穿透在某些情况下是有用的，但它也可能导致代码难以理解和维护，特别是当`switch`语句变得复杂时。因此，在使用穿透时要谨慎，并确保你的代码意图是清晰的。
+
+1. **`default`子句**：`default`子句是可选的，它会在没有任何`case`匹配时执行。它通常放在`switch`语句的最后。
+2. **类型兼容性**：虽然`switch`语句通常与整型一起使用，但它实际上可以与任何可以隐式转换为整型的类型一起使用。然而，为了代码的清晰和可维护性，建议只与整型或枚举类型一起使用。
+3. **基于范围的`switch`（C++17及以后）**：虽然这不是`switch`语句的传统用法，但从C++17开始，你可以使用结构化绑定来匹配`std::pair`、`std::tuple`等复合类型的值。然而，这通常不会改变`switch`语句的基本逻辑和用法。
+4. **性能**：在某些情况下，`if-else`链可能比`switch`语句更高效，尤其是在编译器无法优化`switch`语句时。然而，在大多数情况下，`switch`语句的清晰性和可读性使其成为更好的选择。
+
+# `break`和`continue`语句
+
+在C++（以及许多其他编程语言）中，`break`和`continue`是两个用于控制循环（如`for`、`while`、`do-while`）和条件语句（如`switch`）执行流程的关键字。尽管它们都与控制流有关，但它们的用途和上下文是不同的。
+
+### break语句
+
+`break`语句用于立即退出它所在的循环或`switch`语句。当执行到`break`语句时，程序将跳过当前循环或`switch`语句的剩余部分，并继续执行紧跟在循环或`switch`语句之后的下一条语句。
+
+**在循环中使用**：
+
+```cpp
+for (int i = 0; i < 10; ++i) {
+    if (i == 5) {
+        break; // 当i等于5时，退出循环
+    }
+    std::cout << i << std::endl;
+}
+// 输出：0 到 4
+```
+
+**在switch语句中使用**：
+
+```cpp
+switch (character) {
+    case 'a':
+    case 'A':
+        std::cout << "Character is 'a' or 'A'" << std::endl;
+        break; // 退出switch语句
+    case 'b':
+    case 'B':
+        // ...
+        break;
+    // ...
+    default:
+        std::cout << "Unknown character" << std::endl;
+}
+```
+
+### continue语句
+
+`continue`语句用于跳过当前循环迭代中剩余的代码，并立即开始下一次迭代（如果有的话）。它不会退出循环，而是让循环条件再次被评估，以确定是否应该继续执行循环体。
+
+**在循环中使用**：
+
+```cpp
+for (int i = 0; i < 10; ++i) {
+    if (i % 2 == 0) {
+        continue; // 跳过偶数
+    }
+    std::cout << i << std::endl;
+}
+// 输出：1, 3, 5, 7, 9
+```
+
+在这个例子中，`continue`语句用于跳过所有偶数的打印，因此只有奇数被打印出来。
+
+### 注意事项
+
+* `break`和`continue`语句只能用在循环（`for`、`while`、`do-while`）或`switch`语句中。
+* 在`switch`语句中，`break`是可选的，但如果不使用，则会发生"穿透"（fall-through）行为，即程序会继续执行下一个`case`的代码，直到遇到`break`或`switch`语句的末尾。
+* `continue`语句不能用于`switch`语句中。
+* 过度使用`break`和`continue`可能会使代码难以理解和维护，因此应谨慎使用。
+
+# 读取数据时遇到非数字输入情况的典型方法
+
+```cpp
+// cinfish.cpp -- non-numeric input terminates loop
+#include <iostream>
+const int Max = 5;
+int main()
+{
+    using namespace std;
+// get data
+    double fish[Max];
+    cout << "Please enter the weights of your fish.\n";
+    cout << "You may enter up to " << Max
+            << " fish <q to terminate>.\n";
+    cout << "fish #1: ";
+    int i = 0;
+    while (i < Max && cin >> fish[i]) {
+        if (++i < Max)
+            cout << "fish #" << i+1 << ": ";
+    }
+// calculate average
+    double total = 0.0;
+    for (int j = 0; j < i; j++)
+        total += fish[j];
+// report results
+    if (i == 0)
+        cout << "No fish\n";
+    else
+        cout << total / i << " = average weight of "
+            << i << " fish\n";
+    cout << "Done.\n";
+// code to keep VC execution window open if q is entered
+// if (!cin)  // input terminated by non-numeric response
+// {
+//     cin.clear();  // reset input
+//     cin.get();    // read q
+// }
+// cin.get();    // read end of line after last input
+// cin.get();    // wait for user to press <Enter>
+    return 0; 
+}
+
+```
+
+这段代码是处理从标准输入（通常是键盘）读取数据时遇到非数字输入情况的典型方法。这里，它特别用于从用户那里获取高尔夫成绩（作为整数），并确保只有当用户输入有效的整数时，程序才会继续。现在，我将详细解释这段代码的各个部分：
+
+```cpp
+while (!(cin >> golf[i])) {
+    // 处理非数字输入的逻辑
+}
+```
+
+这个`while`循环的条件是`!(cin >> golf[i])`。`cin >> golf[i]`是一个表达式，它尝试从标准输入读取一个整数并将其存储在`golf[i]`中。如果读取成功，`cin >> golf[i]`的结果是一个引用到`cin`的流对象，该对象在成功时会转换为`true`。但是，由于我们使用了逻辑非操作符`!`，所以成功读取时条件为`false`，循环不会执行。
+
+然而，如果读取失败（例如，因为用户输入了一个字母而不是数字），`cin`会进入错误状态，并且`cin >> golf[i]`的结果会转换为`false`。这样，逻辑非操作符`!`会将其转换为`true`，循环开始执行。
+
+循环体内的代码负责处理读取失败的情况：
+
+```cpp
+cin.clear();     // 重置输入
+```
+
+`cin.clear()`调用清除`cin`的错误状态，使其准备好再次尝试读取输入。这是必要的，因为一旦`cin`进入错误状态，它就会停止读取任何进一步的输入，直到其状态被重置。
+
+```cpp
+while (cin.get() != '\n')
+    continue;    // 丢弃坏输入，直到遇到换行符
+```
+
+接下来，使用一个`while`循环来读取并丢弃输入缓冲区中直到换行符（`\n`）为止的所有字符。这是通过`cin.get()`实现的，它读取下一个字符但不丢弃它（除非在循环体中通过`continue`语句实现）。但是，在这个特定的循环中，我们实际上并不关心读取的字符是什么，我们只是想要清除它们，直到遇到换行符为止。`continue`语句导致循环立即跳回到其开始处，而不执行循环体中的任何剩余语句（在这个例子中，循环体是空的）。因此，这个循环只是不断地读取并丢弃字符，直到遇到换行符。
+
+```cpp
+cout << "Please enter a number: ";
+```
+
+最后，输出提示信息，告诉用户他们需要输入一个数字。这是为了向用户提供反馈，说明他们的前一次输入是无效的，并提示他们再次尝试。
+
+总的来说，这段代码通过不断地读取并丢弃无效输入（直到遇到换行符），然后提示用户重新输入，来确保`golf[i]`只会被赋予一个有效的整数。一旦成功读取到整数，外层循环（通常是`for`循环，用于遍历所有轮次）就会继续执行，处理下一轮的成绩输入。
+
+# `endl`和`\n`在即时可见性上的区别
+
+假设我们有一个简单的C++程序，它使用`std::cout`来输出文本到控制台，并且我们想要看到文本是如何逐渐打印到屏幕上的。
+
+使用`endl`的示例：
+
+```cpp
+#include <iostream>  
+  
+int main() {  
+    std::cout << "Hello, ";  
+    std::cout << "World!" << std::endl; // 使用endl刷新缓冲区  
+    std::cout << "This is a new line.";  
+    return 0;  
+}
+```
+
+在这个例子中，当程序执行到`std::cout << "World!" << std::endl;`时，输出"Hello, World!"会立即显示在控制台上，因为`endl`不仅插入了换行符，还刷新了输出缓冲区。然后，"This is a new line."也会立即显示在新的一行上。
+
+但是，如果我们使用`\n`而不是`endl`：
+
+```cpp
+#include <iostream>  
+  
+int main() {  
+    std::cout << "Hello, ";  
+    std::cout << "World!\n"; // 使用\n换行，但不刷新缓冲区  
+    std::cout << "This is a new line.";  
+    return 0;  
+}
+```
+
+在这种情况下，尽管"\n"导致了换行，但输出可能不会立即显示在控制台上。这是因为C++标准库通常使用缓冲来优化I/O操作。当输出被发送到标准输出（通常是控制台）时，它首先被写入到一个内部缓冲区中。只有当缓冲区满了，或者程序显式地请求刷新（比如使用`std::endl`或`std::flush`），或者程序结束时，缓冲区的内容才会被发送到控制台。
+
+因此，在某些情况下（尤其是当输出量很小，或者程序很快结束时），你可能会看到"Hello, World!"和"This is a new line."在同一时间显示在控制台上，因为它们都被存储在同一个输出缓冲区中，并在程序结束时一起被发送到控制台。但是，如果输出量很大，或者程序在输出"World!\n"之后暂停了一段时间（比如等待用户输入），那么你就会先看到"Hello, World!"被打印出来，然后才是"This is a new line."。
+
+这就是为什么在某些情况下，使用`endl`而不是`\n`可以确保输出结果的即时可见性。
+
+# 一些用法
+
+### 1. **`strcmp()`**
+
+`strcmp()` 是一个来自 C 标准库 `<cstring>`（在 C++ 中通常通过 `<cstring>` 或 `<string.h>` 引入）的函数，用于比较两个以 null 结尾的字符串（C 风格的字符串）。它的原型如下：
+
+```c
+int strcmp(const char *s1, const char *s2);
+```
+
+* `s1` 和 `s2` 是要比较的两个字符串。
+* 如果 `s1` 和 `s2` 相同，则 `strcmp()` 返回 0。
+* 如果 `s1` 小于 `s2`（按照字典顺序），则返回一个负值。
+* 如果 `s1` 大于 `s2`（按照字典顺序），则返回一个正值。
+
+注意：`strcmp()` 用于 C 风格的字符串，这些字符串是字符数组，并且以 null 字符（`\0`）结尾。
+
+### 2. **`.size()`**
+
+`.size()` 是 C++ 标准库中的 `std::string` 类的一个成员函数，用于获取字符串的长度（不包括结尾的 null 字符）。它的用法如下：
+
+```cpp
+#include <string>
+
+std::string str = "Hello, world!";
+size_t len = str.size(); // len 现在为 13
+```
+
+* `str` 是一个 `std::string` 对象。
+* `str.size()` 返回字符串的长度（即字符数）。
+
+注意：`.size()` 用于 `std::string` 类型的对象，这是 C++ 的一个类，提供了许多方便的方法来操作字符串。
+
+总结：`strcmp()` 用于比较 C 风格的字符串，而 `.size()` 用于获取 `std::string` 对象的长度。两者在用途和上下文上有所不同。
+
+### 3.`clock()`
+
+```cpp
+// waiting.cpp -- 使用 clock() 函数实现时间延迟循环  
+#include <iostream>         // 引入输入输出流库，用于输入输出操作  
+#include <ctime>            // 引入时间库，用于 clock() 函数和 clock_t 类型  
+  
+int main()  
+{  
+    using namespace std;    // 使用标准命名空间，避免在后续代码中重复写 std::  
+  
+    // 输出提示信息，要求用户输入延迟时间（秒）  
+    cout << "Enter the delay time, in seconds: ";  
+  
+    // 定义一个浮点数变量 secs，用于存储用户输入的延迟时间  
+    float secs;  
+  
+    // 从标准输入（通常是键盘）读取用户输入的延迟时间  
+    cin >> secs;  
+  
+    // 将用户输入的延迟时间（秒）转换为时钟计时单元（clock ticks）  
+    // CLOCKS_PER_SEC 是每秒的时钟计时单元数，通常定义在 ctime 头文件中  
+    clock_t delay = secs * CLOCKS_PER_SEC;  
+  
+    // 输出“starting”并发出警告铃声（'\a' 是 ASCII 中的响铃字符）  
+    cout << "starting\a\n";  
+  
+    // 获取当前时间（以时钟计时单元为单位），并存储在 start 变量中  
+    clock_t start = clock();  
+  
+    // 循环，直到经过的时间（clock() - start）达到或超过用户指定的延迟时间（delay）  
+    while (clock() - start < delay )  
+    {  
+        // 循环体为空，只等待时间流逝  
+        ; // 注意这里的分号，它表示一个空语句  
+    }  
+  
+    // 当循环结束时，输出“done”并发出警告铃声  
+    cout << "done \a\n";  
+  
+    // 下面的两行代码被注释掉了，它们通常用于在控制台程序结束时暂停程序  
+    // 以便用户可以看到输出结果（因为控制台窗口可能会立即关闭）  
+    // cin.get();  
+    // cin.get();  
+  
+    // 主函数返回 0，表示程序正常结束  
+    return 0;   
+}
+```
+
+`clock()` 函数是 C 和 C++ 标准库中的一个函数，用于测量程序执行的时间。这个函数返回从程序启动开始到调用 `clock()` 函数时的 CPU 时间（以“时钟计时单元”为单位）。这个“时钟计时单元”的具体长度取决于系统实现，但通常可以通过 `CLOCKS_PER_SEC` 常量来转换为秒。
+
+`clock()` 函数的原型如下：
+
+```c
+clock_t clock(void);
+```
+
+它返回一个 `clock_t` 类型的值，这个值表示从程序启动到调用 `clock()` 时的 CPU 时间（以时钟计时单元为单位）。
+
+### 4.`clock_t 类型`
+
+`clock_t` 是一个数据类型，用于表示 `clock()` 函数返回的时间值。它是一个整数类型，但具体的范围和精度取决于实现。你不需要知道它的确切大小和表示方式，只需要知道它是一个能够表示时间的整数类型即可。
+
+* 使用 clock_t 类型的 start 和 delay
+
+在代码中，`start` 和 `delay` 都是 `clock_t` 类型的变量，用于存储时间值。
+
+* **start**：
+  `start` 变量用于存储 `clock()` 函数在循环开始前的返回值。这样，你就可以通过比较当前时间和 `start` 的值来计算已经过去的 CPU 时间。
+
+```cpp
+clock_t start = clock();
+```
+
+* **delay**：
+  `delay` 变量用于存储用户指定的延时时间（以秒为单位）转换为时钟计时单元后的值。这样，你就可以在循环中比较当前时间和 `start + delay` 的值，以确定是否已经达到了用户指定的延时时间。
+
+```cpp
+float secs;
+cin >> secs;
+clock_t delay = secs * CLOCKS_PER_SEC; // 将秒转换为时钟计时单元
+```
+
+* **延时循环**
+
+在延时循环中，你使用 `clock()` 函数来获取当前时间，并将其与 `start + delay` 进行比较。如果当前时间还没有达到 `start + delay`，则循环继续执行；否则，循环结束。
+
+```cpp
+while (clock() - start < delay) {
+    // 循环体为空，只等待时间流逝
+}
+```
+
+这个循环会一直执行，直到 CPU 时间达到或超过 `start + delay` 为止。注意，由于 `clock()` 函数测量的是 CPU 时间，而不是实际经过的墙钟时间（real-world time），因此这个延时循环可能会受到系统负载和其他因素的影响。
+
+* **总结**
+
+`clock()` 函数用于测量 CPU 时间，`clock_t` 是用于表示这种时间值的类型。在你的代码中，`start` 变量用于存储循环开始时的 CPU 时间，而 `delay` 变量用于存储用户指定的延时时间转换为时钟计时单元后的值。通过比较当前时间和 `start + delay`，你可以实现一个简单的延时循环
+
+### 5.`cctype`
+
+`cctype`是C++标准库中的一个头文件（在C语言中对应的是`<ctype.h>`），它提供了一系列用于字符分类和转换的函数。这些函数对于处理字符数据、验证输入或进行文本分析时非常有用。以下是对`cctype`中一些常见字符函数的清晰归纳和解释：
+
+### 字符分类函数
+
+1. **`isalnum(int c)`**
+
+   * 功能：检查字符`c`是否是字母或数字（a-z、A-Z 或 0-9）。
+   * 返回值：如果`c`是字母或数字，则返回非零值（通常理解为`true`）；否则返回零（`false`）。
+2. **`isalpha(int c)`**
+
+   * 功能：检查字符`c`是否是字母（a-z 或 A-Z）。
+   * 返回值：如果`c`是字母，则返回非零值（`true`）；否则返回零（`false`）。
+3. **`isdigit(int c)`**
+
+   * 功能：检查字符`c`是否是数字（0-9）。
+   * 返回值：如果`c`是数字，则返回非零值（`true`）；否则返回零（`false`）。
+4. **`islower(int c)`**
+
+   * 功能：检查字符`c`是否是小写字母（a-z）。
+   * 返回值：如果`c`是小写字母，则返回非零值（`true`）；否则返回零（`false`）。
+5. **`isupper(int c)`**
+
+   * 功能：检查字符`c`是否是大写字母（A-Z）。
+   * 返回值：如果`c`是大写字母，则返回非零值（`true`）；否则返回零（`false`）。
+6. **`isspace(int c)`**
+
+   * 功能：检查字符`c`是否是空白字符（如空格、制表符、换行符等）。
+   * 返回值：如果`c`是空白字符，则返回非零值（`true`）；否则返回零（`false`）。
+7. **`ispunct(int c)`**
+
+   * 功能：检查字符`c`是否是标点符号（既不是字母、数字也不是空白字符）。
+   * 返回值：如果`c`是标点符号，则返回非零值（`true`）；否则返回零（`false`）。
+8. **`iscntrl(int c)`**
+
+   * 功能：检查字符`c`是否是控制字符（如回车、换行等，这些字符在文本中通常不直接显示）。
+   * 返回值：如果`c`是控制字符，则返回非零值（`true`）；否则返回零（`false`）。
+9. **`isxdigit(int c)`**
+
+   * 功能：检查字符`c`是否是十六进制数字（0-9、a-f、A-F）。
+   * 返回值：如果`c`是十六进制数字，则返回非零值（`true`）；否则返回零（`false`）。
+
+### 字符转换函数
+
+1. **`tolower(int c)`**
+
+   * 功能：如果字符`c`是大写字母，则返回其对应的小写字母；否则返回`c`本身。
+   * 注意：返回值是转换后的字符的ASCII值，如果需要作为字符输出，可能需要进行类型转换。
+2. **`toupper(int c)`**
+
+   * 功能：如果字符`c`是小写字母，则返回其对应的大写字母；否则返回`c`本身。
+   * 注意：同样，返回值是转换后的字符的ASCII值。
+
+### 使用注意事项
+
+* 这些函数都接受一个`int`类型的参数，尽管我们通常传入的是`char`类型的字符。在C++中，`char`类型在内部以整数形式存储，因此可以隐式转换为`int`。
+* 返回值也是`int`类型，非零值通常表示`true`，零值表示`false`。在需要布尔值上下文中使用时，可以直接使用这些返回值。
+* 需要注意的是，`tolower`和`toupper`函数返回的是转换后的字符的ASCII值，如果需要在字符串中使用转换后的字符，可能需要进行类型转换（如使用`static_cast<char>`）。
+
+### 示例代码
+
+```cpp
+#include <iostream>
+#include <cctype>
+
+int main() {
+    char ch = 'A';
+    std::cout << std::boolalpha; // 使bool值以true/false形式输出
+
+    std::cout << "Is alpha: " << std::isalpha(ch) << std::endl
+```
+
+# 数据结构
+
+## 线性表
+
+### 顺序线性表
+
+多项式的顺序存储结构类型定义
+
+```cpp
+-1#include <cstring>
+#include <iostream>
+using namespace std;
+#define MAXSIZE 1000 //多项式可能达到的最大长度
+
+//函数结果状态代码
+#define TRUE 1
+#define FALSE 0
+#define OK 1
+#define ERROR 0
+#define INFEASIBLE -1
+#define OVERFLOW -2
+
+//Status是函数的类型，其值是函数结果状态代码
+typedef int Status;
+typedef char ElemType;
+
+struct Polynomial //多项式非零项的定义
+{
+    float p; //系数
+    int e; //指数
+};
+
+struct SqList //多项式的顺序存储结构类型为SqList
+{
+    Polynomial *elem; //存储空间的基地址
+    int length; //多项式中当前项的个数
+};
+
+//线性表L的初始化(参数用引用)
+Status InitList_Sq(SqList& L) //构造一个空的顺序表L
+{
+    L.elem = new Polynomial[MAXSIZE]; //重点！为顺序表分配空间
+    if(!L.elem) //异常处理，储存分配失败
+    {
+        exit(OVERFLOW); 
+    }
+    L.length = 0; //空表长度为0
+    return OK;
+}
+
+//销毁线性表L
+void DestroyList(SqList& L)
+{
+    if(L.elem)
+    {
+        delete[] L.elem; //释放储存空间
+
+    }
+}
+
+//清空线性表L
+void ClearList(SqList& L)
+{
+    L.length = 0; //将线性表的长度设置为0
+}
+
+//求线性表L的长度
+int GetLength(SqList& L)
+{
+    return (L.length);
+}
+
+//判断线性表L是否为空
+int IsEmpty(SqList& L)
+{
+    if(L.length == 0)
+    {
+        return 1;
+    }
+    else 
+    {
+        return 0;
+    }
+}
+
+//顺序表的取值，根据位置i获取相应位置数据元素的内容
+int GetElem(SqList L, int i, Polynomial &e)
+{
+    if(i<1 || i>L.length) //判断i值是否合理，若不合理，返回错误值
+    {
+        return ERROR;
+    }
+    e = L.elem[i - 1]; //第i-1的单元存储着第i个数据
+    return OK;
+}
+
+bool IsEqual(const Polynomial &p1, const Polynomial &p2)
+    {
+        return p1.p == p2.p && p1.e == p2.e;
+    } //辅助函数，帮助进行下面的顺序表的查找操作
+
+//顺序表的查找
+int LocateElem(SqList L, Polynomial &e)  //此处可写成const Polynomial &e表示常量引用，既节约空间（没有复制副本），又表明了它不会被修改
+
+{
+    for (int i = 0; i < L.length; i++)
+    {
+        if(IsEqual(L.elem[i],e))
+        {
+            return i + 1;
+        }
+    }
+    return 0;
+}
+
+//顺序表的插入
+Status ListInsert_Sq(SqList &L, int i, Polynomial &e)
+{
+    if(i < 1 || i > L.length+1) //第一步判断插入位置是否合法
+    {
+        return ERROR;
+    }
+    if(L.length == MAXSIZE) //检测是否存储空间已满
+    {
+        return ERROR;
+    }
+    for (int j = L.length - 1; j >= i-1; j--) //插入位置以及之后的位置后移
+    {
+        L.elem[j + 1] = L.elem[j];
+    }
+    L.elem[i - 1] = e; //将新元素e放到第i个位置
+    L.length++;        // 表长增加1
+    return OK;  
+}
+
+//顺序表的删除
+Status Listdelete_Sq(SqList &L,int i)
+{
+    if(i < 1 || i > L.length) //第一步判断位置是否合法
+    {
+        return ERROR;
+    }
+    for (int j = i; j <= L.length - 1; j++)
+    {
+        L.elem[j - 1] = L.elem[j];
+    }
+    L.length--;
+    return OK;
+}
+
+//有序表的合并
+void MergeList_Sq(SqList LA, SqList LB, SqList &LC)
+{
+    Polynomial *pa, *pb, *pc, *pa_last, *pb_last;
+    pa = LA.elem; //指针pa和pb的初值分别指向两个表的第一个元素
+    pb = LB.elem; //指针pa和pb的初值分别指向两个表的第一个元素
+    LC.length = LA.length + LB.length; //新表长度为待合并两表的长度之和
+    LC.elem = new Polynomial[LC.length]; //为合并后的新表分配一个数组空间
+    pc = LC.elem; //指针pc指向新表的第一个元素
+    pa_last = LA.elem + LA.length - 1; //指针pa last指向LA表的最后一个元素
+    pb_last = LB.elem + LB.length - 1; //指针pb last指向LB表的最后一个元素
+    while (pa <= pa_last && pb <=pb_last) //两个表都非空
+    {
+        if (*pa <= *pb) //依次“摘取”两表中值较小的结点
+        {
+            *pc++ = *pa++;                                
+
+
+        }
+        else
+        {
+            *pc++ = *ob++;
+        }
+    }
+    while (pa <= pa_last) //LB表已到达表尾，将LA中剩余元素加入LC
+    {
+        *pc++ = *pa++;
+    }
+    while (pb <= pb_last) //LA表已到达表尾，将LB中剩余元素加入LC
+    {
+        *pc++ = *pb++;
+    }
+}
+
+int main()
+{
+   
+
+    return 0;
+}
+```
+
+#### 函数`LocateElem`的应用
+
+```CPP
+int main()
+{
+    SqList L; // 声明顺序表 L  
+    InitList_Sq(L); // 初始化顺序表 L  
+  
+    // 向顺序表中添加几个多项式项  
+    L.elem[0].p = 1.0; L.elem[0].e = 2;  
+    L.elem[1].p = 2.5; L.elem[1].e = 1;  
+    L.elem[2].p = 3.0; L.elem[2].e = 0;  
+    L.length = 3; // 更新顺序表的长度  
+  
+    // 查找一个多项式项  
+    Polynomial target = {2.5, 1};  
+    int position = LocateElem(L, target);  
+  
+    if (position != 0) {  
+        cout << "元素找到，位置为: " << position << endl;  
+    } else {  
+        cout << "元素未找到" << endl;  
+    }  
+  
+    // 注意：在实际应用中，您应该调用 DestroyList(L) 来释放顺序表占用的内存  
+
+
+    return 0;
+}
+
+```
+
+#### 使用 `ListInsert_Sq` 函数
+
+```cpp
+int main()
+{
+    SqList L; // 声明顺序表 L
+    InitList_Sq(L); // 初始化顺序表 L
+
+    // 使用 ListInsert_Sq 向顺序表中添加多项式项
+    Polynomial e1 = {1.0, 2}; // 系数1.0，指数2
+    Polynomial e2 = {2.5, 1}; // 系数2.5，指数1
+    Polynomial e3 = {3.0, 0}; // 系数3.0，指数0
+
+    // 注意：索引从1开始，因为ListInsert_Sq期望的是1-based索引
+    ListInsert_Sq(L, 1, e1); // 在位置1插入e1
+    ListInsert_Sq(L, 2, e2); // 在位置2插入e2（现在e1之后）
+    ListInsert_Sq(L, 3, e3); // 在位置3插入e3（现在e2之后）
+
+    // 打印结果以验证
+    for (int i = 0; i < L.length; i++) 
+    {
+    cout << "项 " << i + 1 << ": 系数 = " << L.elem[i].p << ", 指数 = " << L.elem[i].e << endl;
+    }
+
+    return 0;
+}
+```
+
+在这个修改后的 `main` 函数中，我们首先声明了三个 `Polynomial` 类型的变量 `e1`、`e2` 和 `e3`，并分别初始化为不同的系数和指数。然后，我们使用 `ListInsert_Sq` 函数将这些项插入到顺序表 `L` 中。注意，`ListInsert_Sq` 函数的索引是从 1 开始的，这与许多编程语言中的数组索引从 0 开始不同。
+
+最后，我们使用一个循环来遍历并打印顺序表 `L` 中的所有项，以验证插入操作是否成功。注意，我们在打印时使用了 `i + 1` 来匹配人类通常理解的“第1项”、“第2项”等概念，因为 `i` 是从 0 开始的数组索引。
+
+### 单链表
+
+```cpp
+#include <cstring>
+#include <iostream>
+using namespace std;
+#define MAXSIZE 1000 //多项式可能达到的最大长度
+
+//函数结果状态代码
+#define TRUE 1
+#define FALSE 0
+#define OK 1
+#define ERROR 0
+#define INFEASIBLE -1
+#define OVERFLOW -2
+
+//Status是函数的类型，其值是函数结果状态代码
+typedef int Status;
+typedef char ElemType;
+
+struct student
+{
+    char num[8];
+    char name[8];
+    int score;
+};
+
+struct Lnode
+{
+    student data;
+    Lnode *next;
+};
+
+using LinkList = Lnode *;
+
+//单链表的初始化，即构造一个空的表
+Status InitList_L(LinkList &L)
+{
+    L = new Lnode;
+    L->next = NULL;
+    return OK;
+}
+
+//判断一个链表是否为空
+int ListEmpty(LinkList L)
+{
+    if(L->next)
+    {
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
+}
+
+//单链表的销毁
+//思路：从头指针开始，依次释放所有节点
+Status Destroy_List(LinkList &L)
+{
+    Lnode *p;
+    while(L != NULL)//此处可以只写L
+    {
+        p = L;
+        L = L->next;
+        delete p;
+    }
+    return OK;
+}
+
+//清空一个单链表，即空链表（头指针和头节点都还在）
+//算法思路：以此释放所有结点，并将头结点指针域设置成空
+Status ClearList(LinkList &L)
+{
+    Lnode *p;
+    Lnode *q;
+    p = L->next;
+    while (p != NULL)
+    {
+        q = p->next;
+        delete p;
+        p = q;
+    }
+    L->next = NULL;
+    return OK;
+}
+
+//求单链表的表长
+//从首元结点开始，一次计数所有结点
+int ListLength_L(LinkList L)
+{
+    Lnode *p;
+    int i = 0;
+    p = L->next;
+    while(p != NULL)
+    {
+        i++;
+        p = p->next;
+    }
+   
+    return i;
+}
+
+//取值，取单链表的第i个元素
+Status GetElem_L(LinkList L, int i, student &e)  //获取线性表L中的某个数据元素的内容，通过变量e返回
+{
+    Lnode *p; //初始化
+    int j = 1; //此处因为后面需要的是能找到位置i，所以这里可以int j = 1;p = L->next;
+    while(p && j<i) //向后扫描，直到p指向第i个元素或p为空
+    {
+        p = p->next;
+        ++j;
+    }
+    if(!p || j>i) //第i个元素不存在
+    {
+        return ERROR;
+    }
+    else //取第i个元素
+    {
+        e = p->data;
+        return OK;
+    }
+}
+
+//查找
+bool IsEqual(const student& s1, const student& s2)  
+{  
+    return strcmp(s1.num, s2.num) == 0 &&  
+           strcmp(s1.name, s2.name) == 0 &&  
+           s1.score == s2.score;  
+// } //辅助函数，帮助进行下面的顺序表的查找操作,在 C++ 中，char 数组（如 char num[8]; 和 char name[8]; 在 student 结构体中）实际上是字符串的 C 风格表示。这些数组包含了一系列字符，并以空字符（'\0'）作为结束符。因此，当你尝试使用 == 操作符来比较两个 char 数组时，你实际上是在比较这两个数组的内存地址，而不是它们包含的内容。
+// 由于你希望比较的是字符串内容，而不是它们的内存地址，因此你不能直接使用 == 操作符。相反，你应该使用 strcmp 函数（定义在 <cstring> 头文件中），该函数用于比较两个 C 风格字符串的内容。
+
+
+//根据指定数据获取该数据所在的位置（地址）
+Lnode *LocateElem_L1(LinkList L, student e)
+{
+    Lnode *p;
+    p = L->next;
+    while(p && !IsEqual(p->data,e))
+    {
+        p = p->next;
+    }
+    return p; //此时如果找到了就是返回的该节点，没找到就返回空了
+}
+
+//根据指定数据获取该数据所在的位置序号
+int LocatElem_L2(LinkList L, student e)
+{
+    Lnode *p;
+    p = L->next;
+    int j = 1;
+    while(p && !IsEqual(p->data,e))
+    {
+        p = p->next;
+        j++;
+    }
+    if (p)
+    {
+        return j;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+//插入
+Status ListInsert_L(LinkList &L, int i, student e)
+{
+    Lnode *p;
+    p = L;  //因为后面要保证能取到位置为i-1的结点，这就导致了如果从L->next开始，当i = 1就找不到i - 1的位置，所以此处的p只能是L，后面的j也只能是0
+    int j = 0;
+    while (p && j < i-1)
+    {
+        p = p->next;
+        j++;
+    }
+    if (!p || j > i-1)
+    {
+        return ERROR;
+    }
+    else
+    {
+        Lnode *s = new Lnode;
+        s->data = e;
+        s->next = p->next;
+        p->next = s;
+        return OK;
+    }
+}
+
+//删除第i个结点
+Status ListDele_L(LinkList &L, int i, student &e)
+{
+    Lnode *p, *q;
+    p = L;
+    int j = 0;
+    while(p->next != NULL && j < i-1)
+    {
+        p = p->next;
+        j++;
+    }
+    if (!p->next || j > i-1)
+    {
+        return ERROR;
+    }
+    else
+    {
+        q = p->next;
+        p->next = q->next;
+        e = q->data;
+        delete q;
+        return OK;
+    }
+}
+
+//插入时检查 p != NULL 是为了确保链表不是空的，并且可以从头节点开始遍历。
+//删除时检查 p->next != NULL 是为了确保要删除的节点确实存在（即链表有足够的长度）,这是很重要的，例如，一共有效元素有三个，如果我们输入的i为4，那么就可以返回error，如果不写while (p->next && j < i - 1)，而写while (p && j < i - 1)那么就不会报错，从而出现p->next->next这种引用空指针的情况
+
+//头插法建立链表,输入要从最后一个结点输入
+void CreateList_H(LinkList &L, int n) //头结点和结点数
+{
+    L = new Lnode;
+    L->next = NULL;
+    Lnode *p;
+    for (int i = n; i > 0; --i) 
+    {
+        p = new Lnode;
+        cout << "请输入学号:" << endl;
+        cin >> p->data.num;
+        cout << "请输入姓名：" << endl;
+        cin >> p->data.name;
+        cout << "请输入分数：" << endl;
+        cin >> p->data.score;
+        p->next = L->next;
+        L->next = p;
+    }
+}
+
+//尾插法建立链表，正位序输入
+void CreateList_R(LinkList &L, int n)
+{
+    L = new Lnode;
+    L->next = NULL;
+    Lnode *p;
+    Lnode *r;//建立一个尾指针
+    r = L; // 尾指针r指向头结点
+    for (int i = 0; i < n;i++)
+    {
+        p = new Lnode; //生成新结点，输入元素值
+        cout << "请输入学号:" << endl;
+        cin >> p->data.num;
+        cout << "请输入姓名：" << endl;
+        cin >> p->data.name;
+        cout << "请输入分数：" << endl;
+        cin >> p->data.score;
+        p->next = NULL;
+        r->next = p; //插入到表尾
+        r = p; //r指向新的尾结点
+    }
+}
+
+//线性表的合并
+void UnionList(LinkList &p1, const LinkList &p2)
+{
+    int p1_Len = ListLength_L(p1);
+    int p2_len = ListLength_L(p2);
+    student stu_link = {};
+    for (int i = 1; i <= p2_len; i++)
+    {
+        GetElem_L(p2, i, stu_link);
+        if (!LocatElem_L2(p1, stu_link))
+        {
+            ListInsert_L(p1, ++p1_Len, stu_link);
+        }
+    }
+}
+
+void PrintList_L(LinkList L)  
+{  
+    Lnode *p = L->next; // 跳过头节点  
+    while (p != NULL)  
+    {  
+        cout << "Num: " << p->data.num << ", Name: " << p->data.name << ", Score: " << p->data.score << endl;  
+        p = p->next;  
+    }  
+}  
+
+LinkList Connect(LinkList &Ta, LinkList &Tb)//尾指针
+
+{
+    Lnode *p;
+    p = Ta->next;
+    Ta->next = Tb->next->next;
+    delete Tb->next;
+    Tb->next = p;
+    return Tb;
+}
+
+void MergeList_L(LinkList &La, LinkList &Lb, LinkList &Lc)
+{
+    Lnode *pa, *pb, *pc;
+    pa = La->next;
+    pb = Lb->next;
+    pc = Lc = La; //用La的头节点作为Lc的头节点
+    while (pa && pb)
+    {
+        if (strcmp(pa->data.num, pb->data.num) <= 0)
+        {
+            pc->next = pa;
+            pc = pa;
+            pa = pa->next;
+        }
+        else
+        {
+            pc->next = pb;
+            pc = pb;
+            pb = pb->next;
+        }
+    }
+    pc->next = pa ? pa : pb; //插入剩余段
+    delete Lb; //释放Lb的头节点
+}
+
+```
+
+在链表操作中，因为不同的操作（如插入、删除、查找等）有不同的前提条件和边界情况需要处理。这些条件确保了操作的正确性和安全性，防止了如空指针解引用、越界访问等运行时错误。
+
+对于插入（`ListInsert_L`）和删除（`ListDele_L`）操作来说，判断条件不同主要有以下几个原因：
+
+1. **操作的性质不同**：
+
+   * 插入操作需要找到要插入位置的前一个节点，并确保链表不是空的（或至少有一个哑节点）以便可以插入第一个元素。
+   * 删除操作需要找到要删除节点的前一个节点，并检查要删除的节点是否真的存在（即不是链表的最后一个节点的`next`指针所指向的`NULL`）。
+2. **遍历的终点不同**：
+
+   * 在插入操作中，遍历的终点是找到第`i-1`个节点（即要插入位置的前一个节点）。如果链表足够长，遍历会在找到这个节点时停止；如果链表不够长，遍历会在到达链表末尾时停止（但此时会检查链表是否为空或遍历是否超出了预期位置）。
+   * 在删除操作中，遍历的终点也是找到第`i-1`个节点，但随后会检查`p->next`是否为`NULL`来确保要删除的节点确实存在。
+3. **对空链表的处理**：
+
+   * 插入操作通常需要特别处理空链表的情况，因为即使`i`为1（即想要插入第一个元素），也需要有一个有效的头指针或哑节点来指向新创建的节点。
+   * 删除操作在空链表上执行时通常是无效的，因为没有节点可以删除。但是，通过检查`p->next`是否为`NULL`，可以确保不会尝试删除不存在的节点。
+4. **防止越界**：
+
+   * 插入和删除操作都需要防止索引`i`超出链表的合法范围。然而，它们检查越界的方式可能略有不同，具体取决于如何实现这些操作。
+
+综上所述，判断条件不同是因为它们服务于不同的操作目的，需要处理不同的前提条件和边界情况。这些条件确保了链表操作的正确性和健壮性。
+
+#### 应用`LinkInsert_L`
+
+```cpp
+#include <cstring>
+#include <iostream>
+using namespace std;
+
+// ...（省略之前的定义，包括Status, ElemType, student, Lnode, LinkList等）
+
+// 遍历并打印链表
+void PrintList_L(LinkList L)
+{
+    Lnode *p = L->next; // 跳过头节点
+    while (p != NULL)
+    {
+        cout << "Num: " << p->data.num << ", Name: " << p->data.name << ", Score: " << p->data.score << endl;
+        p = p->next;
+    }
+}
+
+int main()
+{
+    LinkList L;
+    InitList_L(L); // 初始化链表
+
+    // 创建一些student实例并插入到链表中
+    student stu1 = {"001", "Alice", 90};
+    student stu2 = {"002", "Bob", 85};
+    student stu3 = {"003", "Charlie", 95};
+
+    ListInsert_L(L, 1, stu1); // 在第1个位置插入stu1（注意：这里的位置1是紧跟在头节点之后的）
+    ListInsert_L(L, 2, stu2); // 在第2个位置插入stu2
+    ListInsert_L(L, 3, stu3); // 在第3个位置插入stu3
+
+    // 打印链表内容
+    cout << "The list is:" << endl;
+    PrintList_L(L);
+
+    // 注意：在实际应用中，您可能还需要编写一个删除链表和释放内存的函数
+
+    return 0;
+}
+```
+
+在这个示例中，我们首先通过调用 `InitList_L` 函数初始化了一个空的链表 `L`。然后，我们创建了三个 `student` 结构体实例 `stu1`、`stu2` 和 `stu3`，并使用 `ListInsert_L` 函数将它们分别插入到链表中的第1、第2和第3个位置（注意，这里的“位置”是相对于头节点之后的第一个元素开始计数的）。最后，我们调用 `PrintList_L` 函数来遍历并打印链表中的所有元素。
+
+请注意，在实际应用中，当链表不再需要时，您应该编写一个函数来遍历链表并释放每个节点所占用的内存，以避免内存泄漏。在这个示例中，为了保持简单，我们没有包含这样的内存释放函数。
+
+其它应用
+
+```cpp
+int main()  
+{  
+    LinkList L;  
+    InitList_L(L); // 初始化链表  
+  
+    // 创建一些student实例并插入到链表中  
+    student stu1 = {"001", "Alice", 90};  
+    student stu2 = {"002", "Bob", 85};  
+    student stu3 = {"003", "Charlie", 95};
+    student stu4 = {};
+
+    ListInsert_L(L, 1, stu1); // 在第1个位置插入stu1（注意：这里的位置1是紧跟在头节点之后的）  
+    ListInsert_L(L, 2, stu2); // 在第2个位置插入stu2  
+    ListInsert_L(L, 3, stu3); // 在第3个位置插入stu3  
+
+     // 打印链表内容  
+    cout << "The list is:" << endl;  
+    PrintList_L(L);  
+  
+    // 注意：在实际应用中，您可能还需要编写一个删除链表和释放内存的函数
+    ListDele_L(L, 2, stu4);
+    cout << "The list is:" << endl;  
+    PrintList_L(L);
+
+    CreateList_H(L, 2);
+    PrintList_L(L);
+    return 0;  
+}
+```
+
+#### 应用`UnionList`
+
+```cpp
+int main()  
+{  
+    LinkList L;  
+    InitList_L(L); // 初始化链表
+    LinkList P;  
+    InitList_L(P); // 初始化链表
+    // 创建一些student实例并插入到链表中  
+    student stu1 = {"001", "Alice", 90};  
+    student stu2 = {"002", "Bob", 85};  
+    student stu3 = {"003", "Charlie", 95};
+    student stu4 = {};
+
+    ListInsert_L(L, 1, stu1); // 在第1个位置插入stu1（注意：这里的位置1是紧跟在头节点之后的）  
+    ListInsert_L(L, 2, stu2); // 在第2个位置插入stu2  
+    ListInsert_L(L, 3, stu3); // 在第3个位置插入stu3
+
+    student stu5 = {"004", "zzz", 90};  
+    student stu6 = {"005", "xxx", 85};  
+    student stu7 = {"006", "Charlie", 95};
+    student stu8 = {};
+
+    ListInsert_L(P, 1, stu5); 
+    ListInsert_L(P, 2, stu6);   
+    ListInsert_L(P, 3, stu7);
+
+    // 打印链表内容  
+    cout << "The list is:" << endl;  
+    PrintList_L(L);
+    PrintList_L(P);
+    UnionList(L, P);
+    PrintList_L(L);
+
+    return 0;  
+}
+```
+
+#### 应用`MergeList_L`
+
+```cpp
+int main()  
+{  
+    LinkList L;  
+    InitList_L(L); // 初始化链表
+    LinkList P;  
+    InitList_L(P); // 初始化链表
+    // 创建一些student实例并插入到链表中  
+    LinkList C;  
+    InitList_L(C);
+    student stu1 = {"1", "Alice", 90};  
+    student stu2 = {"6", "Bob", 85};  
+    student stu3 = {"9", "Charlie", 95};
+    student stu4 = {};
+
+    ListInsert_L(L, 1, stu1); // 在第1个位置插入stu1（注意：这里的位置1是紧跟在头节点之后的）  
+    ListInsert_L(L, 2, stu2); // 在第2个位置插入stu2  
+    ListInsert_L(L, 3, stu3); // 在第3个位置插入stu3
+
+    student stu5 = {"2", "zzz", 90};  
+    student stu6 = {"5", "xxx", 85};  
+    student stu7 = {"7", "Charlie", 95};
+    student stu8 = {};
+
+    ListInsert_L(P, 1, stu5); 
+    ListInsert_L(P, 2, stu6);   
+    ListInsert_L(P, 3, stu7);
+
+    // 打印链表内容  
+    cout << "The list L is:" << endl;  
+    PrintList_L(L);
+
+    cout << "The list P is:" << endl;
+    PrintList_L(P);
+
+    // cout << "The list L+P is:" << endl;
+    // UnionList(L, P);
+    // PrintList_L(L);
+    // cout << endl;
+
+    MergeList_L(L, P, C);
+    cout << "The list C is:" << endl;
+    PrintList_L(C);
+  
+    return 0;  
+```
+
+#### 关于循环条件
+
+关于下面这行代码我们应该如何理解呢？
+
+```cpp
+p = L->next;
+int j = 1;
+while (p && j < i - 1)
+```
+
+为了思维的流畅性，我一般都会把p目前所指的位置与j的初始值搭配起来，这样j起到一个计数的作用，当循环结束的时候，j此时等于i-1,也就意味着，p此时指的位置也就是i-1
+
+### 双链表
+
+```cpp
+#include <cstring>
+#include <iostream>
+using namespace std;
+
+//函数结果状态代码
+#define TRUE 1
+#define FALSE 0
+#define OK 1
+#define ERROR 0
+#define INFEASIBLE -1
+#define OVERFLOW -2
+
+//Status是函数的类型，其值是函数结果状态代码
+typedef int Status;
+typedef char ElemType;
+
+struct student
+{
+    char num[8];
+    char name[8];
+    int score;
+};
+
+struct DuLNode
+{
+    student data;
+    DuLNode *prior, *next;
+};
+
+using DuLinkList = DuLNode *;
+
+//初始化双链表
+Status InitDulLinkList(DuLinkList &L)
+{
+    L = new DuLNode;
+    L->next = nullptr;
+    L->prior = nullptr;
+    return OK;
+}
+
+//双向链表只有在删除和插入上与单链表有区别
+
+//双向链表的插入(插入第i个位置)
+
+Status ListInsert_Dul(DuLinkList &L, int i, student e)  
+{  
+    // 检查i的合法性  
+    if (i <= 0) return ERROR; // 不允许在位置0或负数位置插入  
+  
+    DuLNode *p = L, *s;  
+    int j = 0;  
+  
+    // 找到第i-1个节点（即新节点的前一个节点）  
+    while (p && j < i - 1)  
+    {  
+        p = p->next;  
+        j++;  
+    }  
+  
+    // 如果p为空，说明链表长度小于i-1，插入位置不合法  
+    if (!p) return ERROR;  
+  
+    // 分配新节点  
+    s = new DuLNode;  
+    if (!s) return OVERFLOW; // 内存分配失败  
+  
+    s->data = e;  
+  
+    // 插入新节点  
+    s->next = p->next;  
+    if (p->next) p->next->prior = s; // 如果p不是尾节点，则更新p的下一个节点的prior指针  
+    s->prior = p;  
+    p->next = s;  
+  
+    // 如果是在链表头部插入，则更新头节点指针（但这一步在这个函数中是可选的，因为头节点指针L是通过引用传递的，且我们总是从L开始遍历）  
+    // 注意：如果确实需要在头部插入且想直接更新L，可以添加一个特判（if (i == 1) L = s;），但在这个函数中不是必需的  
+  
+    return OK;  
+}
+
+//双向链表的删除，删除第i个元素
+Status ListDelete_DuL(DuLinkList &L, int i, student &e)
+{
+    DuLNode *p = L->next;
+    int j = 1;
+    while(p && j <i)
+    {
+        p = p->next;
+        j++;
+    }
+    if(!p || j > i) //j>i的目的是防止输入的i为负值
+    {
+        return ERROR;
+    }
+    else
+    {
+        e = p->data;
+        if(p->prior)
+        {
+            p->prior->next = p->next;
+        }
+        if(p->next)
+        {
+            p->next->prior = p->prior;
+        }
+        delete p;
+        return OK;
+    }
+}
+
+
+//双向链表的删除，删除第i个元素(第二种写法)
+Status ListDelete_DuL(DuLinkList &L, int i, student &e)
+{
+    DuLNode *p, *s;
+    p = L;
+    int j = 0;
+    while (p->next && j < i - 1)
+    {
+        p = p->next;
+        j++;
+    }
+    if (!p->next || j > i - 1)
+    {
+        return ERROR;
+    }
+    else
+    {
+        e = p->next->data;
+        s = p->next;
+        p->next = s->next;
+        if (s->next)
+        {
+            s->next->prior = p;
+        }
+        delete s;
+        return OK;
+    }
+}
+
+void PrintList_DuL(DuLinkList L)  
+{  
+    DuLNode *p = L->next; // 跳过头节点  
+    while (p != NULL)  
+    {  
+        cout << "Num: " << p->data.num << ", Name: " << p->data.name << ", Score: " << p->data.score << endl;  
+        p = p->next;  
+    }  
+}  
+
+int main()  
+{  
+    DuLinkList L;
+    InitDulLinkList(L);
+    // 创建一些student实例并插入到链表中  
+    student stu1 = {"001", "Alice", 90};  
+    student stu2 = {"002", "Bob", 85};  
+    student stu3 = {"003", "Charlie", 95};
+    student stu4 = {};
+
+    ListInsert_Dul(L, 1, stu1); // 在第1个位置插入stu1（注意：这里的位置1是紧跟在头节点之后的）  
+    ListInsert_Dul(L, 2, stu2); // 在第2个位置插入stu2  
+    ListInsert_Dul(L, 3, stu3); // 在第3个位置插入stu3
+
+    // 打印链表内容  
+    cout << "The list is:" << endl;  
+    PrintList_DuL(L);
+  
+    // 注意：在实际应用中，您可能还需要编写一个删除链表和释放内存的函数
+    ListDelete_DuL(L, 1, stu4);
+    cout << "The list is:" << endl;  
+    PrintList_DuL(L);
+
+    return 0;  
+}
+```
+
+## 栈和队列
+
+### 顺序栈
+
+在代码中设置了`base`和`top`两个值用来指代栈底和栈顶，需要注意的是`top`指的一般都是空的，而它的下面一条才是实际存储的值
+
+```cpp
+#include <cstring>
+#include <iostream>
+using namespace std;
+#define MAXSIZE 100
+//函数结果状态代码
+#define TRUE 1
+#define FALSE 0
+#define OK 1
+#define ERROR 0
+#define INFEASIBLE -1
+#define OVERFLOW -2
+
+//Status是函数的类型，其值是函数结果状态代码
+typedef int Status;
+typedef char ElemType;
+
+struct student
+{
+    char name[8];
+};
+
+
+struct SqStack
+{
+    student *top;
+    student *base;
+    int stacksize;
+};
+
+//顺序栈的初始化
+Status InitStack(SqStack &S)
+{
+    S.base = new student[MAXSIZE];
+    if (!S.base)
+    {
+        exit(OVERFLOW);
+    }
+    S.top = S.base;
+    S.stacksize = MAXSIZE;
+    return OK;
+}
+
+//判断顺序栈是否为空
+Status StackEmpty(const SqStack &S)
+{
+    if (S.top == S.base)
+    {
+        return TRUE;
+    }
+    elsee
+    {
+        return FALSE;
+    }
+}
+
+//求顺序栈长度
+int StackLength(const SqStack &S)
+{
+    return S.top - S.base;
+}
+
+//清空顺序栈
+Status DeleteStack(SqStack &S)
+{
+    if (S.base)
+    {
+        S.top = S.base;
+        return OK;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+Status DestroyStack(SqStack &S)
+{
+    if (S.base)
+    {
+        delete S.base;
+        S.stacksize = 0;
+        S.base = S.top = nullptr;
+    }
+    return OK;
+}
+
+//顺序栈的入栈
+Status Push(SqStack &S, student e)
+{
+    if (S.top - S.base == S.stacksize)
+    {
+        return ERROR;
+    }
+    else
+    { 
+        *S.top = e;
+        S.top++;
+        // 这两行可以写成 *S.top++ = e;
+        return OK;
+    }
+}
+
+//顺序栈的出栈
+Status Pop(SqStack &S, student e)
+{
+    if (S.top == S.base)
+    {
+        return ERROR;
+    }
+    else
+    {
+        e = *--S.top;
+        return OK;
+    }
+  
+}
+```
+
+### 链栈
+
+```cpp
+#include <cstring>
+#include <iostream>
+using namespace std;
+
+//函数结果状态代码
+#define TRUE 1
+#define FALSE 0
+#define OK 1
+#define ERROR 0
+#define INFEASIBLE -1
+#define OVERFLOW -2
+
+//Status是函数的类型，其值是函数结果状态代码
+typedef int Status;
+typedef char ElemType;
+
+struct student
+{
+    char name[8];
+};
+
+
+struct StackNode
+{
+    student data;
+    struct StackNode *next;
+};
+
+using LinkStack = StackNode *;
+
+//链栈的方向和单链表相反，它的头指针就是栈顶，不需要头节点，基本不存在栈满的情况，空栈相当于头指针指向空，插入和删除仅在栈顶处执行
+
+//链栈的初始化
+Status InitStack(LinkStack &S)
+{
+    S = nullptr;
+    return OK;
+}
+
+//判断链栈是否为空
+Status StackEmpty(const LinkStack &S)
+{
+    if (S = nullptr)
+    {
+        return TRUE;
+    }
+    else
+    {
+        return FALSE;
+    }
+}
+
+//链栈的入栈
+Status Push(LinkStack &S, student e)
+{
+    StackNode *p;
+    p = new StackNode;
+    p->data = e;
+    p->next = S;
+    S = p;
+    return OK;
+}
+
+//链栈的出栈
+Status Pop(LinkStack &S, student e)
+{
+    StackNode *p;
+    if (!S)
+    {
+        return ERROR;
+    }
+    else
+    {
+        e = S->data;
+        p = S;
+        S = S->next;
+        delete p;
+        return OK;
+    }
+}
+
+//取栈顶元素
+student GetTop(const LinkStack &S)
+{
+    if (S)
+    {
+        return S->data;
+    }
+}
+
+
+```
+
+## 数据结构中c与cpp的区别
+
+### `malloc`和`new`
+
+`malloc`和`new`都是用于动态内存分配的机制，但它们分别属于 C 语言和 C++ 语言的范畴。下面将分别介绍它们的特点和用法。
+
+#### `malloc`（C语言）
+
+`malloc` 是 C 语言标准库中的一个函数，用于动态地分配一块指定大小的内存区域，并返回指向该内存区域的指针。如果分配成功，返回指向被分配内存的指针；如果分配失败，则返回 NULL 指针。
+
+**用法**：
+
+```c
+#include <stdlib.h> // 包含malloc函数的声明
+
+void* malloc(size_t size);
+```
+
+* `size` 参数指定了要分配的字节数。
+* 返回值是指向分配的内存区域的指针，类型为 `void*`，可以转换为任何类型的指针。
+
+**注意**：
+
+* 分配的内存区域不会自动初始化，其内容是未定义的。
+* 使用完毕后，需要通过 `free` 函数释放内存，以避免内存泄漏。
+* 如果 `malloc` 分配失败（如因为内存不足），则返回 NULL，因此在使用分配的内存之前应该检查指针是否为 NULL。
+
+#### new（C++语言）
+
+`new` 是 C++ 中的一个操作符，用于动态地分配对象或对象数组的内存，并调用相应的构造函数（如果有的话）来初始化这些对象。
+
+**用法**：
+
+对于单个对象：
+
+```cpp
+Type* ptr = new Type(arguments); // 分配内存并调用构造函数
+```
+
+对于对象数组：
+
+```cpp
+Type* array = new Type[n]; // 分配n个Type类型对象的数组内存，并调用默认构造函数（如果有）
+```
+
+或者，使用带有初始化器的数组（C++11及以后）：
+
+```cpp
+Type* array = new Type[n]{initializer_list};
+```
+
+##### 示例代码
+
+假设我们有一个简单的结构体（在C中）或类（在C++中），但为了保持一致性，这里我们使用C风格的`struct`，但演示如何在C++环境中使用它。
+
+```cpp
+#include <iostream>
+#include <cstdlib> // 包含malloc和free的声明
+
+// 使用C风格的struct，但在C++环境中
+struct MyStruct {
+    int value;
+    // 注意：这里没有构造函数或析构函数，因为这是一个C风格的struct
+};
+
+int main() {
+    // 使用malloc分配内存（C风格）
+    MyStruct* ptr1 = (MyStruct*)malloc(sizeof(MyStruct));
+    if (ptr1 != nullptr) { // 检查malloc是否成功分配了内存
+        ptr1->value = 42; // 使用分配的内存
+        std::cout << "C风格: " << ptr1->value << std::endl;
+
+        // 释放内存
+        free(ptr1);
+    }
+
+    // 使用new分配内存（C++风格）
+    MyStruct* ptr2 = new MyStruct; // 不需要类型转换，直接返回MyStruct*
+    ptr2->value = 100; // 使用分配并默认初始化的内存（尽管这里MyStruct没有构造函数）
+    std::cout << "C++风格: " << ptr2->value << std::endl;
+
+    // 释放内存
+    delete ptr2; // 注意这里使用delete而不是delete[]，因为我们分配的是一个对象而不是数组
+
+    return 0;
+}
+```
+
+### 注意事项
+
+1. **类型转换**：在C++中使用`malloc`时，通常需要将其返回的`void*`类型转换为具体的指针类型。然而，在C++中更推荐使用`new`，因为它会自动进行类型转换。
+2. **内存初始化**：`malloc`分配的内存不会自动初始化，其内容是不确定的。而`new`会调用对象的构造函数（如果有的话）来初始化对象。在这个例子中，`MyStruct`没有构造函数，所以`new`实际上只是分配了内存并进行了默认的内存清零（这取决于编译器和编译选项，但通常对于基本数据类型和简单的结构体，不会有显式的清零操作）。
+3. **内存释放**：`malloc`分配的内存应通过`free`释放，而`new`分配的内存应通过`delete`（对于单个对象）或`delete[]`（对于对象数组）释放。
+4. **错误处理**：`malloc`在分配失败时会返回`nullptr`（在C中是`NULL`，但在C++中推荐使用`nullptr`），因此在使用分配的内存之前应该检查指针是否为`nullptr`。而`new`在分配失败时会抛出`std::bad_alloc`异常，除非使用了`nothrow`版本的`new`（`new(std::nothrow) Type`），它会返回`nullptr`而不是抛出异常。
+5. **混合使用**：虽然这个例子展示了如何在同一个项目中混合使用C和C++风格的内存管理，但在实际开发中，建议根据项目的语言和风格统一使用一种内存管理方式，以保持代码的一致性和可维护性。
+
+**注意**：
+
+* 分配的内存会自动调用构造函数进行初始化（如果提供了初始化参数或使用了初始化列表）。
+* 使用完毕后，需要通过 `delete`（对于单个对象）或 `delete[]`（对于对象数组）来释放内存，并调用析构函数（如果有的话）。
+* 如果 `new` 分配失败（例如，因为内存不足），则会抛出一个 `std::bad_alloc` 异常（在C++中，与C语言的返回NULL不同，C++更倾向于使用异常来处理错误）。
+
+#### 总结
+
+* `malloc` 是 C 语言中的函数，用于分配内存但不进行初始化，需要手动释放内存。
+* `new` 是 C++ 中的操作符，用于分配并初始化对象或对象数组的内存，自动调用构造函数，并需要相应的 `delete` 或 `delete[]` 来释放内存和调用析构函数。
+* 在 C++ 中，推荐使用 `new` 和 `delete`（或智能指针）来管理动态内存，因为它们提供了更好的类型安全性和异常处理机制。然而，在需要与 C 代码交互或处理原始内存块时，`malloc` 和 `free` 仍然是可用的选项。
+
+#### 1. 引用的基本概念
+
+在C++中，引用是一种复合类型，它是对另一个变量的别名。引用**不占用独立的内存空间**，而是和被引用的对象共享同一块内存。下面详细讲解C++中的引用：
+
+* **定义**：引用是通过在变量类型后加上`&`符号来定义的，例如`int& ref = var;`，这里`ref`就是`var`的引用。
+* **本质**：引用是已定义的变量的别名，不是新定义了一个变量。引用在底层实现上通常是通过指针实现的，但编译器会为我们处理这些细节，使得引用的使用更加直观和安全。
+
+#### 2. 引用的特性
+
+* **必须初始化**：引用在声明时必须被初始化，且一旦被初始化后，就不能再引用其他对象。如果引用没有被初始化，程序会报错。
+* **类型一致**：引用的类型必须与其引用的对象的类型一致（除了某些情况下可以通过`const`引用进行类型转换）。
+* **共享内存**：引用和被引用的对象共享同一块内存空间，对引用的任何非`const`操作都会反映到被引用的对象上。
+* **生命周期**：引用的生命周期不能超出被引用对象的生命周期。
+
+#### 3. 引用的使用场景
+
+* **作为函数参数**：通过引用传递参数可以避免拷贝大型对象，提高函数调用的效率。同时，如果函数需要修改传入的参数，使用引用也是必要的。
+* **作为函数返回值**：当需要返回一个对象的引用时，可以使用引用作为返回值。但需要注意，返回的引用所指向的对象必须保证在函数返回后仍然有效（例如，返回静态局部对象、全局对象或成员对象的引用）。
+* **用于复杂表达式**：为复杂表达式创建引用别名，可以提高代码的可读性和可维护性。
+
+#### 4. 引用与指针的区别
+
+* **初始化**：引用在声明时必须初始化，而指针可以在声明时不初始化。
+* **赋值**：引用一旦绑定到一个对象后，就不能再改变为引用另一个对象；而指针的值（即它所指向的地址）可以随时改变。
+* **安全性**：引用在使用上比指针更安全，因为编译器会帮助我们检查很多错误（如引用未初始化的错误）。
+* **语法**：引用在语法上更接近于变量，而指针则需要使用解引用操作符`*`来访问它所指向的对象。
+
+#### 5. 注意事项
+
+* 当使用引用时，需要注意引用的生命周期，确保它不会超出被引用对象的生命周期。
+* 在函数参数中使用引用时，如果不需要修改传入的参数，最好使用`const`引用，以避免无意中修改实参。
+* 引用不能为空，因为引用必须指向一个已存在的对象。
+
+综上所述，C++中的引用是一种强大的特性，它提供了对另一个变量的直接访问能力，同时避免了指针的一些复杂性和不安全性。合理使用引用可以使代码更加简洁、高效和安全。
+
+C++中引用的应用非常广泛，其中一个常见的应用场景是作为函数的参数。通过使用引用作为函数参数，我们可以避免在函数调用过程中进行不必要的数据拷贝，特别是在处理大型对象或数据结构时，这可以显著提高程序的效率。
+
+下面是一个具体的例子，展示了如何使用引用来交换两个整数的值：
+
+```cpp
+#include <iostream>
+using namespace std;
+
+// 使用引用作为函数参数来交换两个整数的值
+void swap(int& a, int& b) {
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+int main() {
+    int x = 5, y = 10;
+    cout << "Before swap: x = " << x << ", y = " << y << endl;
+    swap(x, y); // 调用swap函数，通过引用传递x和y的地址
+    cout << "After swap: x = " << x << ", y = " << y << endl;
+    return 0;
+}
+```
+
+在这个例子中，`swap`函数接受两个整型引用`a`和`b`作为参数。在函数体内，我们交换了`a`和`b`的值。由于`a`和`b`是引用，它们实际上是指向`main`函数中`x`和`y`变量的别名。因此，当我们在`swap`函数中修改`a`和`b`的值时，实际上是在修改`main`函数中`x`和`y`的值。
+
+运行这个程序，输出将会是：
+
+```
+Before swap: x = 5, y = 10
+After swap: x = 10, y = 5
+```
+
+这证明了通过引用传递参数，我们可以在函数内部直接修改实参的值，而不需要进行数据的拷贝。这种方法在处理大型对象或需要频繁修改实参的场景中特别有用。
+
+此外，引用还可以作为函数的返回值，但这需要小心处理返回引用的生命周期问题，以避免悬垂引用（dangling reference）的发生。在C++中，更常见的做法是使用指针或智能指针（如`std::shared_ptr`、`std::unique_ptr`）来返回动态分配的对象，或者使用值语义（即返回对象的拷贝）来返回局部对象。然而，在某些情况下，如果返回的对象在函数返回后仍然有效（例如，返回静态局部对象或全局对象的引用），那么使用引用作为返回值也是可行的。
+
+在C++中，使用引用（`&`）和不使用引用（即传递指针的副本）对于函数参数的影响，主要取决于你希望函数如何操作这些参数。
+
+1. **头指针（链表头指针）**：
+
+   * 如果你通过引用传递头指针（`LinkList &L`），那么在函数内部对头指针的任何修改（比如让它指向一个新的链表头节点）都会反映到函数外部。这是因为你实际上是在操作原始的头指针变量本身。
+   * 如果你不通过引用传递头指针（即传递一个指针的副本，如`LinkList L`），那么在函数内部对头指针的修改（比如让它指向一个新的链表头节点）**不会**反映到函数外部，因为这只是修改了头指针副本的值，而没有修改原始的头指针变量。
+2. **链表中的其他节点**：
+
+   * 无论你是否通过引用传递头指针，只要你有了链表中某个节点的指针（无论是直接通过头指针访问，还是通过遍历链表得到的），你就可以修改这个节点本身的数据或结构。这些修改是全局可见的，因为所有指向这个节点的指针都会看到这些修改。
+   * 需要注意的是，这里所说的“修改节点本身”是指修改节点内部的数据或指针（比如修改节点的值或`next`指针），而不是修改节点在内存中的位置（即不改变节点的地址）。
+3. **结论**：
+
+   * 使用引用主要是为了确保对链表头指针的修改能够反映到函数外部。
+   * 修改链表中的其他节点（除了改变它们的内存地址）不需要通过引用传递头指针，因为这些修改是全局可见的。
+   * 但是，如果你需要在函数内部创建一个新的链表，并让函数外部的链表头指针指向这个新链表，那么你必须通过引用传递头指针。
+
+所以，总结来说，用不用引用主要影响的是对链表头指针本身的修改能否反映到函数外部，而不是链表中的其他节点。然而，在实际编程中，为了代码的清晰和可维护性，即使你不需要修改头指针本身，也推荐使用引用传递链表头指针，因为这可以避免在函数内部创建头指针的副本，从而减少内存使用和提高效率。但在某些情况下（比如你的函数只需要读取链表而不修改它），传递指针的副本也是可行的。
